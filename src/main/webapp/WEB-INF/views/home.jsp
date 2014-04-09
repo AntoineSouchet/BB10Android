@@ -39,6 +39,7 @@ bottomText {
 }
 </style>
 <body>
+<div id="MyBody">
 <nav class="navbar navbar-default" role="navigation" style="margin-bottom:0px;">
   <div class="container-fluid">
 <!--     Brand and toggle get grouped for better mobile display -->
@@ -62,6 +63,8 @@ bottomText {
       </ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
+        <a href="#PageLog" class="PageLog btn btn-primary">Connexion</a>
+        <a href="#AddApp" id="AddApp" class="AddApp btn btn-success">Ajouter application</a>
           <input type="text" class="form-control" placeholder="Rechercher">
         </div>
         <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
@@ -77,6 +80,7 @@ bottomText {
             <li class="slide-one active"></li>
             <li class="slide-two"></li>
             <li class="slide-three"></li>
+             <li class="slide-four"></li>
         </ol>   
         <!-- Carousel items -->
         <div class="carousel-inner">
@@ -101,33 +105,50 @@ bottomText {
                   <p>Rejoingnez nous sur les réseaus sociaux #BB10Android</p>
                 </div>
             </div>
+<!--                <div class="item" style="background-color:black"> -->
+               <div class="item">
+                <h2>Partenaires</h2>
+                <div class="carousel-caption">
+<!--                   <h3>Nos partenaires</h3> -->
+                  <p> 
+                  <a href="https://www.1and1.fr/?kwk=276163219&ac=OM.FR.FR930K244307T7073a" target="_blank">
+                  <img src="http://imagesrv.adition.com/banners/268/xml/1und1am/FR_WM/DIY/fr_diy_an_728x90.gif" width="728" height="90"  border="0"/>
+                  </a>
+                  </p>
+                </div>
+            </div>
         </div>
-        <!-- Carousel nav -->
-        <a class="carousel-control left">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="carousel-control right">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
+        
+      <!-- Carousel nav -->
+<!--         <a class="carousel-control left"> -->
+<!--             <span class="glyphicon glyphicon-chevron-left"></span> -->
+<!--         </a> -->
+<!--         <a class="carousel-control right"> -->
+<!--             <span class="glyphicon glyphicon-chevron-right"></span> -->
+<!--         </a> -->
     </div>
 </div>
 <!-- Fin du caroussel -->
 <br />
 
-
+  <center><b>BB10 <span class="glyphicon glyphicon-heart" /><b> Android, comment ça marche ?</b></center>
 <nav class="navbar navbar-default" role="navigation" style="margin:10px;">
-<p class="bg-info"><center>BB10 <span class="glyphicon glyphicon-heart"> Android, comment ça marche ?</center></p>
+
+
+
+<p class="bg-info"></p>
   <div class="container-fluid">
   
 <div id="step" style="margin:20px;float:left;width:30%">
 <div class="row">
 <!--   <div class="col-sm-2 col-md-2"> -->
     <div class="thumbnail">
-    <img src="resources/img/inverted-gray/mobile.png">
+    <img src="resources/flat/1396987165_mobilesearch.png">
       <div class="caption"><center>
         <h3>Test</h3>
-        <p>Télécharge et test l'application Android sur ton BlackBerry.</p>
-        <p><a href="#" class="btn btn-success" role="button">#1</a></center></p>
+        <p>Je télécharge et test l'application Android sur mon BlackBerry.</p>
+        
+        <p><a href="#" class="btn btn-primary" role="">#1</a></center></p>
       </div>
     </div>
 <!--   </div> -->
@@ -139,11 +160,11 @@ bottomText {
 <div class="row">
 <!--   <div class="col-sm-2 col-md-2"> -->
     <div class="thumbnail">
-    <img src="resources/img/inverted-gray/talkcloud.png">
+    <img src="resources/flat/1396987169_group47.png">
       <div class="caption"><center>
         <h3>Résultat</h3>
-        <p>J'indique si l'application est compatible.</p>
-        <p><a href="#" class="btn btn-success" role="button">#2</a></center></p>
+        <p>J'indique si l'application est compatible ou non.</p>
+        <p><a href="#" class="btn btn-warning" role="button">#2</a></center></p>
       </div>
     </div>
 <!--   </div> -->
@@ -154,10 +175,10 @@ bottomText {
 <div class="row">
 <!--   <div class="col-sm-2 col-md-2"> -->
     <div class="thumbnail">
-    <img src="resources/img/inverted-gray/smiley.png">
+    <img src="resources/flat/1396987172_group10.png">
       <div class="caption"><center>
-        <h3>Finit</h3>
-        <p>Je viens d'aider la communauté des utilisateurs BlackBerry.</p>
+        <h3>Finis</h3>
+        <p>J'ai aidé la communautée des utilisateurs BlackBerry.</p>
         <p><a href="#" class="btn btn-success" role="button">#3</a></center></p>
       </div>
     </div>
@@ -167,10 +188,11 @@ bottomText {
 <!-- </div> -->
 </nav>
 </div>
+</div>
 <nav class="navbar navbar-default" role="navigation">
 <bottomText><center>
 Copyright © 2014 BBLove Android<br />
-Blackberry est une déposée, soumise au droit d'auteur.<br />
+Blackberry est une marque déposée, soumise au droit d'auteur.<br />
 Android est une marque déposée, soumise au droit d'auteur.<br />
 En France, sa mise à disposition est autorisée dans la limite des droits accordés par l'article L713-6 alinéa b du Code de la propriété intellectuelle et est reproduite ici en vertu de ces droits.</bottomText>
 </center></nav>

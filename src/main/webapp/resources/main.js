@@ -1,5 +1,7 @@
 $(function() {
 	
+	
+	var redirection = "android";
     // Activate carousel
     $("#myCarousel").carousel();
     
@@ -21,6 +23,25 @@ $(function() {
     $(".slide-three").click(function(){
     	$("#myCarousel").carousel(2);
     });
+    $(".slide-four").click(function(){
+    	$("#myCarousel").carousel(3);
+    });
 
+//    AddApp
+$(document).on("click", ".AddApp", function () {
+		
+		$.post('/' + redirection + '/AddApp.sd', function(data) {
+			$("#MyBody").html(data);
+		});
+	});
+
+//PageLog
+$(document).on("click", ".PageLog", function () {
+	
+	$.post('/' + redirection + '/Connexion.sd', function(data) {
+		$("#MyBody").html(data);
+	});
+});
+    
 });
 
