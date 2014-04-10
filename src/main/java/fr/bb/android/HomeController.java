@@ -20,7 +20,9 @@ public class HomeController {
 	public static ApplicationContext context = new ClassPathXmlApplicationContext("classpath:application-config.xml");
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {		
+	public String home(Locale locale, Model model) {
+		//GetPostGre postgre = context.getBean("GetPostGre",GetPostGre.class);
+		//System.out.println(postgre.GetType());
 		return "home";
 	}
 	
@@ -28,8 +30,8 @@ public class HomeController {
 	public ModelAndView AddApplication()
 	{
 		ModelAndView model = new ModelAndView("AjoutAPP");
-		GetPostGre postgre = context.getBean("GetPostGre",GetPostGre.class);
-		model.addObject("MesType", postgre.GetType());
+//		GetPostGre postgre = context.getBean("GetPostGre",GetPostGre.class);
+//		model.addObject("MesType", postgre.GetType());
 		return model;
 	}
 	
@@ -37,6 +39,20 @@ public class HomeController {
 	public ModelAndView Connexion()
 	{
 		ModelAndView model = new ModelAndView("Connexion");
+		return model;
+	}
+	
+	@RequestMapping("Tuto.sd")
+	public ModelAndView Tuto()
+	{
+		ModelAndView model = new ModelAndView("Tutorial");
+		return model;
+	}
+	
+	@RequestMapping("Propos.sd")
+	public ModelAndView Propos()
+	{
+		ModelAndView model = new ModelAndView("Propos");
 		return model;
 	}
 	

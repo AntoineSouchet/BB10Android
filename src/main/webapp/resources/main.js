@@ -42,6 +42,22 @@ $(document).on("click", ".PageLog", function () {
 		$("#MyBody").html(data);
 	});
 });
+
+//Tuto
+$(document).on("click", ".Tuto", function () {
+	
+	$.post('/' + redirection + '/Tuto.sd', function(data) {
+		$("#MyBody").html(data);
+	});
+});
+
+//Propos
+$(document).on("click", ".Propos", function () {
+	
+	$.post('/' + redirection + '/Propos.sd', function(data) {
+		$("#MyBody").html(data);
+	});
+});
     
 });
 

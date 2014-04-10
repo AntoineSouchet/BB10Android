@@ -10,9 +10,9 @@
               
 <bean id="dataSourcePostgre" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	<property name="driverClassName" value="org.postgresql.Driver"></property>
-	<property name="url" value="jdbc:postgresql://localhost/BbloveAndroid"></property>
-	<property name="username" value="userBB"></property>
-	<property name="password" value="Antoine"></property>
+	<property name="url" value="jdbc:postgresql://localhost/bbloveandroid"></property>
+	<property name="username" value="george"></property>
+	<property name="password" value="password"></property>
 </bean>
 
 <bean id="GetPostGre" class="fr.bb.android.postgre.GetPostGre">

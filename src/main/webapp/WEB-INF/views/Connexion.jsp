@@ -16,8 +16,8 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#Home">Home</a></li>
         <li><a href="#Home">Applications</a></li>
-        <li><a href="#Home">Tutorials</a></li>
-        <li><a href="#Home">A propos</a></li>
+        <li><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutorials</a></li>
+        <li><a href="#Propos" class="Propos" id="Propos" name="Propos">A propos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">

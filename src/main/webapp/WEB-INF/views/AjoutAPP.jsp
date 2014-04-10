@@ -16,12 +16,12 @@
       <ul class="nav navbar-nav">
         <li><a href="#Home">Home</a></li>
         <li class="active"><a href="#Home">Applications</a></li>
-        <li><a href="#Home">Tutorials</a></li>
-        <li><a href="#Home">A propos</a></li>
+        <li><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutorials</a></li>
+        <li><a href="#Propos" class="Propos" id="Propos" name="Propos">A propos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
-        <a href="#Login" class="btn btn-primary">Connexion</a>
+        <a href="#PageLog" class="PageLog btn btn-primary">Connexion</a>
         <a href="#AddApp" id="AddApp" class="AddApp btn btn-success">Ajouter application</a>
           <input type="text" class="form-control" placeholder="Rechercher">
         </div>
@@ -71,7 +71,7 @@
     </select>
   </div>
 </div>
-
+<br />
 <!-- Multiple Checkboxes -->
 <div class="control-group">
   <label class="control-label" for="checkboxes">Testé sur</label>
@@ -94,7 +94,7 @@
     </label>
   </div>
 </div>
-
+<br />
 <div class="control-group">
   <label class="control-label" for="selectbasic">Résultat du test</label>
   <div class="controls">
@@ -103,8 +103,14 @@
       <option>Ne fonctionne pas</option>
     </select>
   </div>
-</div>
-
+</div><br />
+<label class="checkbox" for="checkvalid">Je m'engage a avoir réélement testé l'application dans un but d'aide à la communauté Blackberry.
+<input type="checkbox" name="checkboxes" id="checkvalid" value="ok"></label>
+<br /><center>
+<br />
+<a href="#AnnuApp" class="AnnuApp btn btn-warning" >Annuler</a>
+<a href="#AddApp" class="AddApp btn btn-success" style="margin-left:2%">Ajouter</a>
+</center>
 </fieldset>
 </form>
 
