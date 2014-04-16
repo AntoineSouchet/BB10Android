@@ -8,21 +8,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">BB10 <span class="glyphicon glyphicon-heart"></span> Android</a>
+      <a class="navbar-brand" href="#">BB <span class="glyphicon glyphicon-heart"></span> Android</a>
     </div>
 
 <!--     Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#Home">Home</a></li>
+        <li><a href="#Home" class="Home" id="Home" name="Home">Home</a></li>
         <li><a href="#Home">Applications</a></li>
         <li><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutorials</a></li>
         <li class="active"><a href="#Propos" class="Propos" id="Propos" name="Propos">A propos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
-        <a href="#PageLog" class="PageLog btn btn-primary">Connexion</a>
-        <a href="#AddApp" id="AddApp" class="AddApp btn btn-success">Ajouter application</a>
+${getTopBar}
           <input type="text" class="form-control" placeholder="Rechercher">
         </div>
         <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
@@ -31,14 +30,14 @@
     </div>
 </nav> 
 
-<fieldset style="margin:5%"><legend>A propos du site : </legend>
+<fieldset style="margin:5%"><legend>A propos de BB <span class="glyphicon glyphicon-heart">Android : </legend>
 <h3>Equipe : </h3><br />
 <a href="http://www.linkedin.com/pub/antoine-souchet/5a/32b/70a" target="_blank">
 <img src="resources/img/link.png" align="absmiddle"></a> 
 <b>Fondateur : </b>Souchet Antoine <br /><br />
 <a href="http://www.linkedin.com/pub/mickaël-cirany/59/70/990" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b>Architecture réseau : </b>Cirany Mickael <br /><br />
-<a href="http://www.linkedin.com/in/naubin" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b>Résponsable communication : </b>Aubin Nicolas <br /><br />
-<a href="http://www.linkedin.com/pub/difallah-mehdi/19/882/323" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b>Résponsable comptabilité : </b>Difallah Mehdi <br /><br />
+<a href="http://www.linkedin.com/in/naubin" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b>Résponsable marketing & partenariats : </b>Aubin Nicolas <br /><br />
+<a href="http://www.linkedin.com/pub/difallah-mehdi/19/882/323" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b>Résponsable administratif & financier : </b>Difallah Mehdi <br /><br />
 <br />
 <h3>Matériels disponibles :</h3>
 Blackberry Q10 US noir<br />

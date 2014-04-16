@@ -8,21 +8,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">BB10 <span class="glyphicon glyphicon-heart"></span> Android</a>
+      <a class="navbar-brand" href="#">BB <span class="glyphicon glyphicon-heart"></span> Android</a>
     </div>
 
 <!--     Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#Home">Home</a></li>
+        <li><a href="#Home" class="Home" id="Home" name="Home">Home</a></li>
         <li><a href="#Home">Applications</a></li>
         <li class="active"><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutorials</a></li>
         <li><a href="#Propos" class="Propos" id="Propos" name="Propos">A propos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
-        <a href="#PageLog" class="PageLog btn btn-primary">Connexion</a>
-        <a href="#AddApp" id="AddApp" class="AddApp btn btn-success">Ajouter application</a>
+${getTopBar}
           <input type="text" class="form-control" placeholder="Rechercher">
         </div>
         <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>

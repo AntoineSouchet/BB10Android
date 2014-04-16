@@ -1,57 +1,3 @@
-<!doctype html>
- <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<html>
-<head>
-	<title>BB <3 Android</title>
-</head>
-<script src="resources/js/jquery-1.9.1.js"></script>
-<script src="resources/js/jquery-ui.js"></script>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<link rel="stylesheet" href="resources/bootstrap-3.1.1/css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="resources/bootstrap-3.1.1/css/bootstrap-theme.min.css" type="text/css" />
-<script src="resources/bootstrap-3.1.1/js/bootstrap.js"></script>
-<script src="resources/main.js"></script>
-<style type="text/css">
-h2{
-    margin: 0;     
-    color: #FFF;
-    padding-top: 90px;
-    font-size: 52px;
-    font-family: "trebuchet ms", sans-serif;    
-}
-bottomText {
-	color: #000;
-    font-size: 8px;
-    font-family: "trebuchet ms", sans-serif;   
-}
-.item{
-    background: #295e92;    
-    text-align: center;
-    height: 300px !important;
-}
-.carousel{
-    margin-top: 0px;
-}
-.bs-example{
-	margin: 00px;
-}
-#social{margin: 0;margin-top:5px;}
-.element{display:inline-block;margin: 0 15px;vertical-align:top;}
-</style>
-<body>
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=827540957260617";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<div id="MyBody">
-
 <nav class="navbar navbar-default" role="navigation" style="margin-bottom:0px;">
   <div class="container-fluid">
 <!--     Brand and toggle get grouped for better mobile display -->
@@ -69,16 +15,13 @@ bottomText {
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#Home">Home</a></li>
-        <li><a href="#Home" class="Home" id="Home" name="Home">Applications</a></li>
+        <li><a href="#Home">Applications</a></li>
         <li><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutorials</a></li>
         <li><a href="#Propos" class="Propos" id="Propos" name="Propos">A propos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
-
-
-		
-${getTopBar}
+        ${getTopBar}
           <input type="text" class="form-control" placeholder="Rechercher">
         </div>
         <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
@@ -125,9 +68,9 @@ ${getTopBar}
                 <div class="carousel-caption">
 <!--                   <h3>Nos partenaires</h3> -->
                   <p> 
-<!--                   <a href="https://www.1and1.fr/?kwk=276163219&ac=OM.FR.FR930K244307T7073a" target="_blank"> -->
-<!--                   <img src="http://imagesrv.adition.com/banners/268/xml/1und1am/FR_WM/DIY/fr_diy_an_728x90.gif" width="728" height="90"  border="0"/> -->
-<!--                   </a> -->
+                  <a href="https://www.1and1.fr/?kwk=276163219&ac=OM.FR.FR930K244307T7073a" target="_blank">
+                  <img src="http://imagesrv.adition.com/banners/268/xml/1und1am/FR_WM/DIY/fr_diy_an_728x90.gif" width="728" height="90"  border="0"/>
+                  </a>
                   </p>
                 </div>
             </div>
@@ -161,6 +104,7 @@ ${getTopBar}
       <div class="caption"><center>
         <h3>Test</h3>
         <p>Je télécharge et test l'application Android sur mon BlackBerry.</p>
+        
         <p><a href="#" class="btn btn-primary" role="">#1</a></center></p>
       </div>
     </div>
@@ -176,7 +120,7 @@ ${getTopBar}
     <img src="resources/flat/1396987169_group47.png">
       <div class="caption"><center>
         <h3>Résultat</h3>
-        <p>J'indique si l'application est fonctionelle ou non.</p>
+        <p>J'indique si l'application est compatible ou non.</p>
         <p><a href="#" class="btn btn-warning" role="button">#2</a></center></p>
       </div>
     </div>
@@ -190,7 +134,7 @@ ${getTopBar}
     <div class="thumbnail">
     <img src="resources/flat/1396987172_group10.png">
       <div class="caption"><center>
-        <h3>Terminé</h3>
+        <h3>Finis</h3>
         <p>J'ai aidé la communautée des utilisateurs BlackBerry.</p>
         <p><a href="#" class="btn btn-success" role="button">#3</a></center></p>
       </div>
@@ -200,23 +144,3 @@ ${getTopBar}
 </div>
 <!-- </div> -->
 </nav>
-</div>
-</div>
-<nav class="navbar navbar-default" role="navigation">
-<bottomText><center>
-<ul id="social">
-    <li class="element"> <a href="http://twitter.com/bbloveandroid" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="medium" style="vertical-align: bottom;">Follow @BBLoveAndroid</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
-    </li>
-    <li class="element"><div class="fb-like" data-href="https://www.facebook.com/bbloveandroid" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-    </li>
-    <li class="element"></li>
-</ul><br />
-© 2014 BBLoveAndroid<br />
-Toute reproduction interdite sans l'autorisation de l'auteur.<br />
-Blackberry est une marque déposée, soumise au droit d'auteur.<br />
-Android est une marque déposée, soumise au droit d'auteur.<br />
-En France, sa mise à disposition est autorisée dans la limite des droits accordés par l'article L713-6 alinéa b du Code de la propriété intellectuelle et est reproduite ici en vertu de ces droits.</bottomText>
-</center></nav>
-</body>
-</html>
