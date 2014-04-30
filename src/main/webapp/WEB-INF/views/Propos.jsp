@@ -30,7 +30,8 @@ ${getTopBar}
     </div>
 </nav> 
 
-<fieldset style="margin:5%"><legend>A propos de BB <span class="glyphicon glyphicon-heart">Android : </legend>
+<div id="Record" name="Record" class="jumbotron" style="width:100%;margin-bottom:0px;">
+<fieldset style="margin:5%;margin-top:0px;"><legend>A propos de BB <span class="glyphicon glyphicon-heart">Android : </legend>
 <h3>Equipe : </h3><br />
 <a href="http://www.linkedin.com/pub/antoine-souchet/5a/32b/70a" target="_blank">
 <img src="resources/img/link.png" align="absmiddle"></a> 
@@ -51,3 +52,4 @@ Samsung galaxy S4<br />
 <b>GitHub :</b> <a href="https://github.com/AntoineSouchet/BB10Android" target="_blank">Lien</a><br />
 <b>Technologies :</b> Spring MVC
 </fieldset>
+</div>

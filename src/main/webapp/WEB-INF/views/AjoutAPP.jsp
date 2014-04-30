@@ -30,91 +30,35 @@ ${getTopBar}
     </div>
 </nav>    
 
-
-<form class="form-horizontal">
-<fieldset style="margin:5%">
-
-<!-- Form Name -->
-<legend>Ajouter une application</legend>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="textinput">Nom de l'application</label>
-  <div class="controls">
-    <input id="textinput" name="textinput" type="text" placeholder="Nom" style="width:200px">
+<!-- <div id="form-main"> -->
+<!--   <div id="form-div"> -->
+<div id="Record" name="Record" class="jumbotron" style="width:100%;">
+<div id="form" style=width:400px;margin-left:auto;margin-right:auto;margin-top:1%;>
+    <form class="form" id="form1">
+      
+      <p class="name">
+        <input name="name" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Name" id="name" />
+      </p>
+      
+      <p class="email">
+        <input name="email" type="text" class="validate[required,custom[email]] feedback-input" id="email" placeholder="Email" />
+      </p>
+      
+      <p class="text">
+        <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Comment"></textarea>
+      </p>
+      
+      
+      <div class="submit">
+        <input type="submit" value="SEND" id="button-blue"/>
+        <div class="ease"></div>
+      </div>
+    </form>
   </div>
-</div>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="textinput">Site web de l'application</label>
-  <div class="controls">
-    <input id="textinput" name="textinput" type="text" placeholder="Url" style="width:500px">
-
   </div>
-</div>
-
-<div class="control-group">
-  <label class="control-label" for="textinput">Lien Play Store</label>
-  <div class="controls">
-    <input id="textinput" name="textinput" type="text" placeholder="Url" style="width:500px">
-  </div>
-</div>
-
-<!-- Select Basic -->
-<div class="control-group">
-  <label class="control-label" for="selectbasic">Type d'application</label>
-  <div class="controls">
-    <select id="selectbasic" name="selectbasic" class="input-xlarge">
-      ${MesType}
-    </select>
-  </div>
-</div>
-<br />
-<!-- Multiple Checkboxes -->
-<div class="control-group">
-  <label class="control-label" for="checkboxes">Testé sur</label>
-  <div class="controls">
-    <label class="checkbox" for="checkboxes-0">
-      <input type="checkbox" name="checkboxes" id="checkboxes-0" value="Option one">
-      Blackberry Q5
-    </label>
-    <label class="checkbox" for="checkboxes-1">
-      <input type="checkbox" name="checkboxes" id="checkboxes-1" value="Option two">
-       Blackberry Q10
-    </label>
-    <label class="checkbox" for="checkboxes-2">
-      <input type="checkbox" name="checkboxes" id="checkboxes-2" value="Option tree">
-       Blackberry Z10
-    </label>
-    <label class="checkbox" for="checkboxes-3">
-      <input type="checkbox" name="checkboxes" id="checkboxes-3" value="Option four">
-       Blackberry Z30
-    </label>
-  </div>
-</div>
-<br />
-<div class="control-group">
-  <label class="control-label" for="selectbasic">Résultat du test</label>
-  <div class="controls">
-    <select id="selectbasic" name="selectbasic" class="input-xlarge">
-      <option>Fonctionne</option>
-      <option>Ne fonctionne pas</option>
-    </select>
-  </div>
-</div><br />
-<label class="checkbox" for="checkvalid">Je m'engage a avoir réélement testé l'application dans un but d'aide à la communauté Blackberry.
-<input type="checkbox" name="checkboxes" id="checkvalid" value="ok"></label>
-<br /><center>
-<br />
-<a href="#AnnuApp" class="AnnuApp btn btn-warning" >Annuler</a>
-<a href="#AddApp" class="AddApp btn btn-success" style="margin-left:2%">Ajouter</a>
-</center>
-</fieldset>
-</form>
 
 
 
 
-</div>
+<!-- </div> -->
   

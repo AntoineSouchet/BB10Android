@@ -45,24 +45,40 @@ public class MysqlConnec {
 	
 	public int CreateLogin(Users u)
 	{
-		int retour = 0;
+		int retour = 1;
 		sql = "Select count(*) from Users where login = ?";
 		retour = this.montemplate.queryForInt(sql,u.getPassword());
 		if (retour > 0)
 		{
-			return 1;
+			return 0;
 		}
 		sql = "Select count(*) from Users where email = ?";
 		retour = this.montemplate.queryForInt(sql,u.getEmail());
 		if (retour > 0)
 		{
-			return 1;
+			return 0;
 		}
 		sql = "insert into Users (login,pass,email,age,sexe,valide) values (?,?,?,?,?,?)";
 		this.montemplate.update(sql,u.getLogin(),u.getPassword(),u.getEmail(),u.getAge(),u.getSexe(),u.getValide());
-		return 0;
+		
+		String sqlid = "Select id from Users where login = ? and pass=? and email=?";
+		return this.montemplate.queryForInt(sqlid,u.getLogin(),u.getPassword(),u.getEmail());
 	}
 	
+	
+	public boolean validMail(int id,String user)
+	{
+		String sql = "update Users set valide = 1 where id = ? and login = ?";
+		int retour = this.montemplate.update(sql,id,user);
+		if (retour == 0)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 	public int CheckLog(String log,String pass)
 	{
 		//System.out.println(this.montemplate.queryForInt("Select COUNT(*) from Users where (login=? OR email=?) and pass = ?",log,log,pass));
@@ -88,6 +104,7 @@ public class MysqlConnec {
 		SqlRowSet R = this.montemplate.queryForRowSet(sql,login,login,pass);
 		while (R.next())
 		{
+			u.setId(R.getInt("id"));
 			u.setAge(R.getInt("age"));
 			u.setEmail(R.getString("email"));
 			u.setLogin(R.getString("login"));
@@ -97,4 +114,7 @@ public class MysqlConnec {
 		
 		return u;
 	}
+	
+	
+
 }

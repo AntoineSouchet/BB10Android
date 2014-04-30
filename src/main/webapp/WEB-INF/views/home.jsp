@@ -11,6 +11,7 @@
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <link rel="stylesheet" href="resources/bootstrap-3.1.1/css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="resources/bootstrap-3.1.1/css/bootstrap-theme.min.css" type="text/css" />
+<link rel="stylesheet" href="resources/Form.css" type="text/css" />
 <script src="resources/bootstrap-3.1.1/js/bootstrap.js"></script>
 <script src="resources/main.js"></script>
 <style type="text/css">
@@ -40,6 +41,16 @@ bottomText {
 #social{margin: 0;margin-top:5px;}
 .element{display:inline-block;margin: 0 15px;vertical-align:top;}
 </style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50467678-1', 'bbloveandroid.com');
+  ga('send', 'pageview');
+
+</script>
 <body>
 
 <div id="fb-root"></div>
@@ -202,21 +213,29 @@ ${getTopBar}
 </nav>
 </div>
 </div>
-<nav class="navbar navbar-default" role="navigation">
-<bottomText><center>
+<nav class="navbar navbar-default" role="navigation" style="margin-top:-5px;">
+<bottomText>
 <ul id="social">
-    <li class="element"> <a href="http://twitter.com/bbloveandroid" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="medium" style="vertical-align: bottom;">Follow @BBLoveAndroid</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
-    </li>
-    <li class="element"><div class="fb-like" data-href="https://www.facebook.com/bbloveandroid" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-    </li>
-    <li class="element"></li>
-</ul><br />
-© 2014 BBLoveAndroid<br />
-Toute reproduction interdite sans l'autorisation de l'auteur.<br />
-Blackberry est une marque déposée, soumise au droit d'auteur.<br />
-Android est une marque déposée, soumise au droit d'auteur.<br />
-En France, sa mise à disposition est autorisée dans la limite des droits accordés par l'article L713-6 alinéa b du Code de la propriété intellectuelle et est reproduite ici en vertu de ces droits.</bottomText>
-</center></nav>
+
+<center><b><p style="font-size:14px">BB Love Android on</p></b>
+<a href="https://www.facebook.com/bbloveandroid" target="_blank"><img src="resources/img/facebook.png"/></a>
+<a href="http://twitter.com/bbloveandroid" target="_blank"><img src="resources/img/twitter.png"/></a></center>
+<!-- 	 <li class="element"> <a href="http://twitter.com/bbloveandroid" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="medium" style="vertical-align: bottom;">:)</a> -->
+<!-- 		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>  -->
+<!--     </li> -->
+<!--     <li class="element"><div class="fb-like" data-href="https://www.facebook.com/bbloveandroid" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div> -->
+<!--     </li> -->
+<!--     <li class="element"></li> -->
+</li>
+</center>
+</ul>
+<%-- </ul><br /><center> --%>
+<!-- © 2014 BBLoveAndroid<br /> -->
+<!-- Toute reproduction interdite sans l'autorisation de l'auteur.<br /> -->
+<!-- Blackberry est une marque déposée, soumise au droit d'auteur.<br /> -->
+<!-- Android est une marque déposée, soumise au droit d'auteur.<br /> -->
+<!-- En France, sa mise à disposition est autorisée dans la limite des droits accordés par l'article L713-6 alinéa b du Code de la propriété intellectuelle et est reproduite ici en vertu de ces droits.</bottomText> -->
+<%-- </center></nav> --%>
+</center></bottomText></nav>
 </body>
 </html>

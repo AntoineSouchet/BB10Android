@@ -29,50 +29,26 @@ ${getTopBar}
     </div>
     </div>
 </nav>    
-
-
-<form class="form-horizontal">
-<fieldset style="margin:5%">
-<div id="Compte">
-<!-- Form Name -->
-<legend>Créer un compte d'utilisateur</legend>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="textinput">Nom d'utilisateur : </label>
-  <div class="controls">
-    <input id="Login" name="Login" type="text" placeholder="Nom" style="width:200px">
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="password2">Password : </label>
-  <div class="controls">
-    <input id="password2" name="password2" type="password" placeholder="Password" style="width:200px">
-
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="textinput">Password : </label>
-  <div class="controls">
-    <input id="passwordbis" name="passwordbis" type="password" placeholder="Ressaisir le password" style="width:200px">
-
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="MonMail">Adresse mail : </label>
-  <div class="controls">
-    <input id="MonMail" name="MonMail" type="text" placeholder="email" style="width:300px">
-  </div>
-</div>
-
-<!-- Select Basic -->
-<div class="control-group">
+<div id="Record" name="Record" class="jumbotron" style="width:100%;margin-bottom:-15px;">
+<div id="form" style=width:400px;margin-left:auto;margin-right:auto;margin-top:1%;>
+    <form class="form" id="form1">
+      
+      <p class="login">
+        <input name="Login" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Login" id="Login" />
+      </p>
+      <p class="pass">
+        <input name="password2" type="password" class="validate[required,custom[email]] feedback-input" id="password2" placeholder="Password" />
+      </p>
+      <div class="alert alert-danger" name="MonPassw" id="MonPassw" style="display:none">Merci de saisir un mot de passe.</div>
+      <p class="pass">
+        <input name="passwordbis" type="password" class="validate[required,custom[email]] feedback-input" id="passwordbis" placeholder="Password à nouveau" />
+      </p>
+      <div class="alert alert-danger" name="DoublePass" id="DoublePass" style="display:none">Les deux mots de passes ne correspondent pas.</div>
+            <p class="email">
+        <input name="MonMail" type="text" class="validate[required,custom[email]] feedback-input" id="MonMail" placeholder="Adresse mail valide" />
+      </p>
+      
+      <div class="control-group">
   <label class="control-label" for="Sexe">Sexe : </label>
   <div class="controls">
     <select id="Sexe" name="Sexe" class="input-xlarge">
@@ -82,19 +58,23 @@ ${getTopBar}
   </div>
 </div>
 <br />
-
-<center>
-<br />
-<a href="#AnnuApp" class="AnnuApp btn btn-warning" >Annuler</a>
+      <center>
+<!-- <a href="#AnnuApp" class="AnnuApp btn btn-warning" >Annuler</a> -->
 <a href="#AddApp" class="CreateLog btn btn-success" style="margin-left:2%">Créer mon compte</a>
-</center>
-<br />
-<div class="alert alert-success" name="CreateOK" name="CreateOK" style="display:none">Compte crée avec succés, vérifiez votre boite de réception afin de la valider votre addrese.</div>
+		 </center>
+    </form>
+  </div>
+  <br />
+  <div class="alert alert-success" name="CreateOK" name="CreateOK" style="display:none">Compte crée avec succés, vérifiez votre boite de réception afin de la valider votre addrese.</div>
 <div class="alert alert-warning" name="duplicate" id="duplicate" style="display:none">Le nom d'utilisateur ou cette adresse mail existe deja !</div>
-<div class="alert alert-danger" name="DoublePass" id="DoublePass" style="display:none">Les deux mots de passes ne correspondent pas.</div>
 <div class="alert alert-danger" name="EmptyMail" id="EmptyMail" style="display:none">Merci de saisir une adresse mail.</div>
 <div class="alert alert-danger" name="Log" id="Log" style="display:none">Merci de saisir un nom d'utilisateur.</div>
-<div class="alert alert-danger" name="MonPassw" id="MonPassw" style="display:none">Merci de saisir un mot de passe.</div>
+
+  </div>
+
+
+<br />
+
 </fieldset>
 </form>
 

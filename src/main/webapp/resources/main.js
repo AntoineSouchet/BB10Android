@@ -75,7 +75,7 @@ $(document).on("click", ".Login", function() {
 	var pass = $("#pass").val();
 	//String log,String pass
 	$.post('/' + redirection + '/Login.sd?log=' + login + '&pass=' + pass, function(data) {
-		$("#Record").html(data);
+		$("#MyBody").html(data);
 	});
 });
 

@@ -2,6 +2,7 @@ package fr.bb.android.pojos;
 
 public class Users {
 	
+	private int id;
 	private String login;
 	private String password;
 	private String email;
@@ -11,7 +12,7 @@ public class Users {
 	{
 		super();
 	}
-	public Users(String login, String password, String email, int age,
+	public Users(int id,String login, String password, String email, int age,
 			int sexe, int valide) {
 		super();
 		this.login = login;
@@ -58,6 +59,12 @@ public class Users {
 	}
 	public void setValide(int valide) {
 		this.valide = valide;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

@@ -30,15 +30,20 @@ ${getTopBar}
     </div>
 </nav>   
 
-<div id="Record" name="Record" class="jumbotron" style="width:100%;">
-<center>
-		 <label for="login">Utilisateur</label><br />
-		 <input type="text" id="login" name="login" placeholder="Login/Email" style="width:300px" /><br />
-		 <label for="pass">Mot de passe</label><br />
-		 <input type="password" id="pass" name="pass" placeholder="Password" style="width:300px" />
-		 <br /><br />
-		 <a href="#CreateMonLog" class="CreateMonLog btn btn-primary">Je n'ai pas de compte</a>
+<div id="Record" name="Record" class="jumbotron" style="width:100%;margin-bottom:0px;">
+<div id="form" style=width:400px;margin-left:auto;margin-right:auto;margin-top:1%;>
+    <form class="form" id="form1">
+      
+      <p class="login">
+        <input name="login" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="login" id="login" />
+      </p>
+      <p class="pass">
+        <input name="pass" type="password" class="validate[required,custom[email]] feedback-input" id="pass" placeholder="Password" />
+      </p>
+      <center>
+		<a href="#CreateMonLog" class="CreateMonLog btn btn-primary">Je n'ai pas de compte</a>
 		 <a href="#Login" class="Login btn btn-success">Connexion</a><br /><br />
 		 </center>
-		 	
-</div>
+    </form>
+  </div>
+  </div>

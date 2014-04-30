@@ -30,7 +30,7 @@ ${getTopBar}
     </div>
 </nav>   
 
-
+<div id="Record" name="Record" class="jumbotron" style="width:100%;">
 <fieldset style="width:80%;margin:2%;">
 <legend>Comment installer une application Android sur mon Blackberry ?</legend>
 <p>Vous le savez surement (si vous êtes ici) mais tous les nouveaux smartphones de Blackberry (anciennement RIM) peuvent faire fonctionner les applications Android (.apk).
@@ -56,6 +56,6 @@ On ouvre l'APK depuis le téléphone, (attention l'initialisation peut être un peu
 <h4>Etape 4 : Mettre le résultat de votre installation sur BB Love Android.</h4>
 L'application téléchargé fonctionne ou non ?<br />
 Pensez aux autres gens suceptible de la télcharger et mettez vos résultat ici !<br />
-<center><a href="#AddApp" id="AddApp" class="AddApp btn btn-success">Ajouter application</a></center>
+<!-- <center><a href="#AddApp" id="AddApp" class="AddApp btn btn-success">Ajouter application</a></center> -->
 </fieldset>
-
+</div>
