@@ -7,7 +7,7 @@ import javax.mail.NoSuchProviderException;
 
 import org.junit.Test;
 
-import fr.bb.android.pojos.Mail;
+import fr.bb.android.util.Mail;
 
 public class MailTest {
 

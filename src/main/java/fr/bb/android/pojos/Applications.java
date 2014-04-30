@@ -5,24 +5,12 @@ public class Applications {
 	private int id;
 	private String Name;
 	private String Description;
+	private String Editeur;
 	private String GooglePlay;
-	private int type;
+	private int Type;
+	private int User;
+	private int Ok;
 	
-	public Applications(){	
-		super();
-	}
-
-	public Applications(int id, String name, String description,
-			String googlePlay, int type) {
-		super();
-		this.id = id;
-		Name = name;
-		Description = description;
-		GooglePlay = googlePlay;
-		this.type = type;
-	}
-
-
 	public int getId() {
 		return id;
 	}
@@ -41,6 +29,12 @@ public class Applications {
 	public void setDescription(String description) {
 		Description = description;
 	}
+	public String getEditeur() {
+		return Editeur;
+	}
+	public void setEditeur(String editeur) {
+		Editeur = editeur;
+	}
 	public String getGooglePlay() {
 		return GooglePlay;
 	}
@@ -48,10 +42,22 @@ public class Applications {
 		GooglePlay = googlePlay;
 	}
 	public int getType() {
-		return type;
+		return Type;
 	}
 	public void setType(int type) {
-		this.type = type;
+		Type = type;
+	}
+	public int getUser() {
+		return User;
+	}
+	public void setUser(int user) {
+		User = user;
+	}
+	public int getOk() {
+		return Ok;
+	}
+	public void setOk(int ok) {
+		Ok = ok;
 	}
 
 }

@@ -34,9 +34,7 @@ public class MysqlConnec {
 		Applications app = new Applications();
 		return app;
 	}
-	
-
-	
+		
 	public SqlRowSet Rechercher(String recherche)
 	{
 		sql = "";
@@ -65,7 +63,6 @@ public class MysqlConnec {
 		return this.montemplate.queryForInt(sqlid,u.getLogin(),u.getPassword(),u.getEmail());
 	}
 	
-	
 	public boolean validMail(int id,String user)
 	{
 		String sql = "update Users set valide = 1 where id = ? and login = ?";
@@ -79,6 +76,7 @@ public class MysqlConnec {
 			return true;
 		}
 	}
+	
 	public int CheckLog(String log,String pass)
 	{
 		//System.out.println(this.montemplate.queryForInt("Select COUNT(*) from Users where (login=? OR email=?) and pass = ?",log,log,pass));
@@ -115,6 +113,40 @@ public class MysqlConnec {
 		return u;
 	}
 	
+	public Applications getApplication(int id)
+	{
+		Applications app = new Applications();
+		String sql = "Select * from Applications where id = ?";
+		SqlRowSet R = this.montemplate.queryForRowSet(sql,id);
+		while (R.next())
+		{
+			app.setId(R.getInt("id"));
+			app.setName(R.getString("Name"));
+			app.setDescription(R.getString("Description"));
+			app.setEditeur(R.getString("Editeur"));
+			app.setGooglePlay(R.getString("GooglePlay"));
+			app.setType(R.getInt("Type"));
+			app.setUser(R.getInt("User"));
+			app.setOk(R.getInt("Ok"));
+		}
+		return app;
+	}
 	
+	public int insertAPP(String Name,String Description,String Editeur,String GooglePlay,int Type,int User,int Ok)
+	{
+		String sql = "insert into Applications (Name,Description,Editeur,GooglePlay,Type,User,Ok) values (?,?,?,?,?,?,?)";
+		return this.montemplate.update(sql,Name,Description,Editeur,GooglePlay,Type,User,Ok);
+	}
 
+	public SqlRowSet getAppType()
+	{
+		String sql = "Select * from Type";
+		return this.montemplate.queryForRowSet(sql);
+	}
+	
+	public SqlRowSet getAllApplications()
+	{
+		String sql = "Select * from Applications";
+		return this.montemplate.queryForRowSet(sql);
+	}
 }

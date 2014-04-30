@@ -18,14 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.bb.android.mysql.MysqlConnec;
-import fr.bb.android.pojos.Mail;
 import fr.bb.android.pojos.Users;
+import fr.bb.android.util.Mail;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
+	
 	public static ApplicationContext context = new ClassPathXmlApplicationContext("classpath:application-config.xml");
 	public static HttpSession session;
 	public String ip = "";
@@ -49,7 +47,6 @@ public class HomeController {
 	return "home";
 	}
 
-	
 	@RequestMapping("Connexion.sd")
 	public ModelAndView Connexion(HttpServletRequest request)
 	{
@@ -130,8 +127,9 @@ public class HomeController {
 		return model;
 		
 	}
+	
 	@RequestMapping("CreateLog.sd")
-	@ResponseBody
+	@ResponseBody	
 	public String createLog(String login,String password,String sexe,String email,HttpServletRequest request) throws NoSuchProviderException, MessagingException, IOException
 	{
 		session = request.getSession(true);	
@@ -226,7 +224,6 @@ public class HomeController {
 		String retour = "";
 		if (session.getAttribute("Login") != "Invite")
 		{
-			//TODO
 			retour = "<div id=\"MonId\" name=\"MonId\" style=\"display:none\">" + session.getAttribute("id") + "</div>"
 					+ "<img src=\"resources/img/Roundicons-36.png\" > "
 					+ "<a href=\"#AddApp\" id=\"AddApp\" class=\"AddApp btn btn-success\">Ajouter application</a>";

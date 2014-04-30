@@ -1,4 +1,4 @@
-package fr.bb.android.pojos;
+package fr.bb.android.util;
 
 import java.io.IOException;
 import java.util.Properties;
