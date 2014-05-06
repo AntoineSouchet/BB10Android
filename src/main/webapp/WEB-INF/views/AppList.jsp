@@ -15,9 +15,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="#Home" class="Home" id="Home" name="Home">Home</a></li>
-        <li><a href="#Home">Applications</a></li>
+        <li class="active"><a href="#AppList" class="AppList">Applications</a></li>
         <li><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutorials</a></li>
-        <li class="active"><a href="#Propos" class="Propos" id="Propos" name="Propos">A propos</a></li>
+        <li><a href="#Propos" class="Propos" id="Propos" name="Propos">A propos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
@@ -37,6 +37,7 @@ ${getTopBar}
 <img src="resources/img/link.png" align="absmiddle"></a> 
 <b>Fondateur : </b>Souchet Antoine <br /><br />
 <a href="http://www.linkedin.com/pub/mickaël-cirany/59/70/990" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b>Architecture réseau : </b>Cirany Mickael <br /><br />
+<a href="http://www.linkedin.com/in/naubin" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b>Résponsable marketing & partenariats : </b>Aubin Nicolas <br /><br />
 <a href="http://www.linkedin.com/pub/difallah-mehdi/19/882/323" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b>Résponsable administratif & financier : </b>Difallah Mehdi <br /><br />
 <br />
 <h3>Matériels disponibles :</h3>

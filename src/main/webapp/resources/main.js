@@ -79,6 +79,9 @@ $(document).on("click", ".Login", function() {
 	});
 });
 
+$(document).on("click", ".AppList")
+
+
 $(document).on("click", ".CreateMonLog", function() {
 	$.post('/' + redirection + '/NewLog.sd', function(data) {
 		$("#MyBody").html(data);

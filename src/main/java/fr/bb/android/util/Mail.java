@@ -46,15 +46,6 @@ public class Mail {
 	        this.transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
 	    }
 	    
-	    public void SendSimple() throws MessagingException
-	    {
-	    	MimeMessage message = new MimeMessage(this.session);
-	        message.setSubject("ok");
-	        message.setContent("ok", "text/html");
-	        message.addRecipient(Message.RecipientType.TO,  new InternetAddress("antoine.souchet@securitasdirect.fr"));
-	        message.setFrom(new InternetAddress("antoine.souchet@securitasdirect.fr"));
-	    	this.transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
-	    }
 	    public void close()  throws MessagingException
 	    {
 	    	this.transport.close();
