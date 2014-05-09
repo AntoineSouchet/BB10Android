@@ -146,7 +146,9 @@ public class MysqlConnec {
 	
 	public SqlRowSet getAllApplications()
 	{
-		String sql = "Select * from Applications";
+		String sql = "Select app.id,app.Name,Description,Editeur,GooglePlay,T.Name as 'Type',u.login,OK from Applications as app "
+					+ " inner join Type as T on app.Type = T.id "
+					+ " inner join Users as U on app.User = U.id";
 		return this.montemplate.queryForRowSet(sql);
 	}
 }

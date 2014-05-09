@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -124,9 +125,61 @@ public class HomeController {
 		session = request.getSession(true);	
 		ModelAndView model = new ModelAndView("AjoutAPP");
 		model.addObject("getTopBar",getTopBar());
-		return model;
-		
+		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+		SqlRowSet RowType = mysql.getAppType();
+		String Type = "";
+		while (RowType.next())
+		{
+			Type = Type + "<option id=" + RowType.getInt("id") + ">" + RowType.getString("Name") + "</option>";
+		}
+		model.addObject("Type",Type);
+		return model;	
 	}
+	
+	@RequestMapping("AppList.sd")
+	public ModelAndView GetApp(HttpServletRequest request)
+	{
+		session = request.getSession(true);
+		ModelAndView model = new ModelAndView("AppList");
+		model.addObject("getTopBar",getTopBar());
+		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+		SqlRowSet RowApp = mysql.getAllApplications();
+		String Liste = "";
+		while (RowApp.next())
+		{
+			String stat = "";
+			
+			if (RowApp.getInt("OK") == 1)
+			{
+				stat = "Compatible";
+				Liste = Liste + 
+						"<tr class=\"success\">"
+						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
+						+ "<td>" + RowApp.getString("Editeur") + "</td>"
+						+ "<td>" + RowApp.getString("Type") + "</td>"
+						+ "<td><b>" + stat + "</b></td>"
+						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
+						+ "<td>" + RowApp.getString("login") + "</td>" 
+						+ "<td><img src=\"resources/img/Info.png\"></td></tr>";
+			}
+			else
+			{
+				stat = "Incompatible";
+				Liste = Liste + 
+						"<tr class=\"warning\">"
+						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
+						+ "<td>" + RowApp.getString("Editeur") + "</td>"
+						+ "<td>" + RowApp.getString("Type") + "</td>"
+						+ "<td><b>" + stat + "</b></td>"
+						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
+						+ "<td>" + RowApp.getString("login") + "</td>" 
+						+ "<td><img src=\"resources/img/Info.png\"></td></tr>";
+			}
+	}
+		model.addObject("ListeApp",Liste);
+		return model;
+	}
+	
 	
 	@RequestMapping("CreateLog.sd")
 	@ResponseBody	
@@ -149,8 +202,6 @@ public class HomeController {
 					+ "<style type=\"text/css\">a:link{text-decoration:none}</style>"
 					+ "</head>"
 					+ "<body style=background-color:#295e92;color:white;a:link{text-decoration:none}>"
-//					+ "<div style=width:100%;height:100%;background-color:#295e92;color:white;font-family: \"trebuchet ms\", sans-serif;>"
-					//37.187.47.201:8080/BB10Android/
 					+ "<center><img src=\"http://37.187.47.201:8090/BB10Android/resources/img/MyBBLOVE.png\"></center><br />"
 					+ "Bonjour " + login + ", vous venez de cr&eacute;er un compte sur BBLoveAndroid.<br />"
 					+ "Afin de valider votre compter merci de cliquez sur le lien ci-dessous.<br />"
@@ -219,19 +270,33 @@ public class HomeController {
 		}
 	}
 	
+	@RequestMapping("Lougout.sd")
+	public ModelAndView logout(HttpServletRequest request)
+	{
+		session = request.getSession(true);	
+		session.removeAttribute("Login");
+		session.setAttribute("Login", "Invite");
+		ModelAndView model = new ModelAndView("index");
+		model.addObject("getTopBar", getTopBar());
+		return model;
+	}
+	
 	public String getTopBar()
 	{
 		String retour = "";
-		if (session.getAttribute("Login") != "Invite")
+		if (session.getAttribute("Login").toString().contentEquals("Invite") == true)
 		{
-			retour = "<div id=\"MonId\" name=\"MonId\" style=\"display:none\">" + session.getAttribute("id") + "</div>"
-					+ "<img src=\"resources/img/Roundicons-36.png\" > "
-					+ "<a href=\"#AddApp\" id=\"AddApp\" class=\"AddApp btn btn-success\">Ajouter application</a>";
+			retour = "<a href=\"#PageLog\" class=\"PageLog btn btn-primary\">Connexion</a>";
+		}
+		else if(session.getAttribute("Login").toString().contentEquals("") == true)
+		{
+			retour = "<a href=\"#PageLog\" class=\"PageLog btn btn-primary\">Connexion</a>";		
 		}
 		else
 		{
-			retour = "<a href=\"#PageLog\" class=\"PageLog btn btn-primary\">Connexion</a>";
-					
+			retour = "<div id=\"MonId\" name=\"MonId\" style=\"display:none\">" + session.getAttribute("id") + "</div>"
+					+ "<a href=\"#Logout\" id=\"Logout\" class=\"Logout\"><img src=\"resources/img/Account.png\" ></a>  "
+					+ "<a href=\"#AddApp\" id=\"AddApp\" class=\"AddApp btn btn-success\">Ajouter application</a>";		
 		}
 		return retour;
 	}

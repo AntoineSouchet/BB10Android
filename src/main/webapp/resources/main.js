@@ -70,6 +70,18 @@ $(document).on("click", ".Home", function () {
 	});
 });
 
+$(document).on("click", ".AppList", function () {
+	$.post('/' + redirection + '/AppList.sd', function(data) {
+		$("#MyBody").html(data);
+	});
+});
+
+$(document).on("click", ".Logout", function() {
+	$.post('/' + redirection + '/Lougout.sd', function(data) {
+		$("#MyBody").html(data);
+	});
+});
+
 $(document).on("click", ".Login", function() {
 	var login = $("#login").val();
 	var pass = $("#pass").val();
@@ -78,8 +90,6 @@ $(document).on("click", ".Login", function() {
 		$("#MyBody").html(data);
 	});
 });
-
-$(document).on("click", ".AppList")
 
 
 $(document).on("click", ".CreateMonLog", function() {

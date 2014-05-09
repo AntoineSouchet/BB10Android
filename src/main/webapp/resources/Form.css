@@ -105,6 +105,34 @@
 	background-repeat: no-repeat;
 }
 
+#Description{
+	background-image: url(img/007.png);
+	background-size: 30px 30px;
+	background-position: 11px 8px;
+	background-repeat: no-repeat;
+}
+
+#Editeur{
+	background-image: url(img/002.png);
+	background-size: 30px 30px;
+	background-position: 11px 8px;
+	background-repeat: no-repeat;
+}
+
+#Google{
+	background-image: url(img/031.png);
+	background-size: 30px 30px;
+	background-position: 11px 8px;
+	background-repeat: no-repeat;
+}
+
+#Name{
+	background-image: url(img/006.png);
+	background-size: 30px 30px;
+	background-position: 11px 8px;
+	background-repeat: no-repeat;
+}
+
 /* #pass:focus{ */
 /* 	background-image: url(img/key62.png); */
 /* 	background-size: 30px 30px; */
