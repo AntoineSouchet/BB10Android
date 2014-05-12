@@ -22,9 +22,9 @@
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
 ${getTopBar}
-          <input type="text" class="form-control" placeholder="Rechercher">
+          <input type="text" name="AppName" id="AppName" class="form-control" placeholder="Rechercher">
         </div>
-        <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
+        <a href="#Seek" class="Seek btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
       </form>
     </div>
     </div>

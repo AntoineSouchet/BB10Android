@@ -22,9 +22,9 @@
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
 ${getTopBar}
-          <input type="text" class="form-control" placeholder="Rechercher">
+          <input type="text" name="AppName" id="AppName" class="form-control" placeholder="Rechercher">
         </div>
-        <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
+        <a href="#Seek" class="Seek btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
       </form>
     </div>
     </div>
@@ -69,13 +69,14 @@ ${getTopBar}
 <br />
       <center>
 <!-- <a href="#AnnuApp" class="AnnuApp btn btn-warning" >Annuler</a> -->
-<a href="#AddApp" class="CreateLog btn btn-success" style="margin-left:2%">Ajouter</a>
+<a href="#NewApp" class="NewApp btn btn-success" style="margin-left:2%">Ajouter</a>
 		 </center>
     </form>
   </div>
   <br />
-  <div class="alert alert-success" name="CreateOK" name="CreateOK" style="display:none">Compte crée avec succés, vérifiez votre boite de réception afin de la valider votre addrese.</div>
-
+  <div class="alert alert-warning" name="CreateNOK" id="CreateNOK" style="display:none">Une application avec le même nom est déja dans la base de données.</div>
+  <div class="alert alert-success" name="CreateOK" id="CreateOK" style="display:none">L'application a été ajouté ! Merci de votre contribution.</div>
+<div class="alert alert-warning" name="Incomp" id="Incomp" style="display:none">Toutes les données nécéssaires ne sont pas saisies !</div>
   </div>
 
 

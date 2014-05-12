@@ -22,14 +22,15 @@
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
 ${getTopBar}
-          <input type="text" class="form-control" placeholder="Rechercher">
+          <input type="text" name="AppName" id="AppName" class="form-control" placeholder="Rechercher">
         </div>
-        <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
+        <a href="#Seek" class="Seek btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>n class="glyphicon glyphicon-search"></span></a>
       </form>
     </div>
     </div>
 </nav>    
 <div id="Record" name="Record" class="jumbotron" style="width:100%;margin-bottom:-15px;">
+<div id="Compte" name="Compte">
 <div id="form" style=width:400px;margin-left:auto;margin-right:auto;margin-top:1%;>
     <form class="form" id="form1">
       
@@ -77,7 +78,7 @@ ${getTopBar}
 
 </fieldset>
 </form>
-
+</div>
 </div>
 
 

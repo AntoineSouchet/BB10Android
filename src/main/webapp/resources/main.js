@@ -2,10 +2,10 @@ $(function() {
 	
 	
 	//dev
-	var redirection = "android";
+	//var redirection = "android";
 	
 	//prod
-	//var redirection = "BB10Android";
+	var redirection = "BB10Android";
     // Activate carousel
     $("#myCarousel").carousel();
     
@@ -33,7 +33,7 @@ $(function() {
 
 //    AddApp
 $(document).on("click", ".AddApp", function () {
-		
+
 		$.post('/' + redirection + '/AddApp.sd', function(data) {
 			$("#MyBody").html(data);
 		});
@@ -82,16 +82,84 @@ $(document).on("click", ".Logout", function() {
 	});
 });
 
+$(document).on("click", ".btn-zoomApp",function(){
+	var idApp = $(this).siblings("input:hidden").val();
+	$.post('/' + redirection + '/ZoomApp.sd?idApp=' +idApp,function(data)
+	{
+		var chaine = data.split("/////");
+		$("#Titre").html(chaine[0]);
+		$("#infoApp").html(chaine[1]);
+	});
+});
+
+//Search Application
+$(document).on("click", ".Seek",function() {
+	var AppName = $("#AppName").val();
+	$.post('/' + redirection + '/Seek.sd?AppName=' + AppName,function(data)
+			{
+		$("#MyBody").html(data);
+			});
+});
+
 $(document).on("click", ".Login", function() {
 	var login = $("#login").val();
 	var pass = $("#pass").val();
-	//String log,String pass
+
 	$.post('/' + redirection + '/Login.sd?log=' + login + '&pass=' + pass, function(data) {
 		$("#MyBody").html(data);
 	});
 });
 
 
+function login()
+{
+	var login = $("#login").val();
+	var pass = $("#pass").val();
+
+	$.post('/' + redirection + '/Login.sd?log=' + login + '&pass=' + pass, function(data) {
+		$("#MyBody").html(data);
+	});
+	}
+
+
+$(document).on("click", ".NewApp", function() {
+
+	$("#CreateNOK").hide();
+	$("#CreateOK").hide();
+	$("#Incomp").hide();
+	var AppName = $("#Name").val();
+	var Description = $("#Description").val();
+	var Editeur = $("#Editeur").val();
+	var Google = $("#Google").val();
+	var Type = $("#Type").val();
+	var Fonctionne = $("#Fonctionne").val();
+	var User = $("#MonId").html();
+
+	if(AppName == "")
+		{
+		$("#Incomp").show();
+		}
+	if (Description == "")
+		{
+		$("#Incomp").show();
+		}
+	$.post('/' + redirection + '/NewApp.sd?Name=' + AppName + '&Description=' + Description + '&Editeur=' + Editeur + '&Google=' + Google + '&Type=' + Type + '&Fonctionne=' + Fonctionne + '&User=' + User, function(data) {
+		if (data == "X")
+			{
+			$("#CreateNOK").show();
+			}
+		else if(data == "ok")
+			{
+			$("#Name").val("");
+			$("#Description").val("");
+			$("#Editeur").val("");
+			$("#Google").val("");
+			$("Type").val("");
+			$("#Fonctionne").val("");
+			$("#CreateOK").show();
+			}
+	});
+});
 $(document).on("click", ".CreateMonLog", function() {
 	$.post('/' + redirection + '/NewLog.sd', function(data) {
 		$("#MyBody").html(data);

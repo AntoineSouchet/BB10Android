@@ -22,9 +22,9 @@
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
 ${getTopBar}
-          <input type="text" class="form-control" placeholder="Rechercher">
+          <input type="text" name="AppName" id="AppName" class="form-control" placeholder="Rechercher">
         </div>
-        <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
+        <a href="#Seek" class="Seek btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
       </form>
     </div>
     </div>
@@ -45,4 +45,22 @@ ${getTopBar}
 ${ListeApp}
 </tbody>
 </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><div id="Titre"></div></h4>
+      </div>
+      <div class="modal-body">
+       <div id="infoApp"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

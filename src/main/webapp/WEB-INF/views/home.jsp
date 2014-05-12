@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -71,9 +72,9 @@ bottomText {
 
 		
 ${getTopBar}
-          <input type="text" class="form-control" placeholder="Rechercher">
+          <input type="text" name="AppName" id="AppName" class="form-control" placeholder="Rechercher">
         </div>
-        <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
+        <a href="#Seek" class="Seek btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
       </form>
     </div>
     </div>
@@ -94,21 +95,21 @@ ${getTopBar}
                 <h2>BB <span class="glyphicon glyphicon-heart"></span> Android</h2>
          		<div class="carousel-caption">
                   <h3>Tutorial</h3>
-                  <p>DÈcouvez comment votre Blackberry peux utiliser vos APK.</p>
+                  <p>D√©couvez comment votre Blackberry peut utiliser vos APK.</p>
                 </div>
             </div>
             <div class="item">
-                <h2>CompatibilitÈs</h2>
+                <h2>Compatibilit√©s</h2>
                 <div class="carousel-caption">
                   <h3>Informations</h3>
-                  <p>DÈcouvrez la liste des applications testÈes et compatbiles.</p>
+                  <p>D√©couvrez la liste des applications test√©es et compatibles.</p>
                 </div>
             </div>
             <div class="item">
-                <h2>RÈseaux</h2>
+                <h2>R√©seaux</h2>
                 <div class="carousel-caption">
                   <h3>Facebook Twitter</h3>
-                  <p>Rejoingnez nous sur les rÈseaus sociaux #BBLoveAndroid</p>
+                  <p>Rejoingnez nous sur les r√©seaux sociaux #BBLoveAndroid</p>
                 </div>
             </div>
 <!--                <div class="item" style="background-color:black"> -->
@@ -137,7 +138,8 @@ ${getTopBar}
 <!-- Fin du caroussel -->
 <br />
 
-  <center><b>BB <span class="glyphicon glyphicon-heart" /><b> Android, comment Áa marche ?</b></center>
+  <center><b>BB <span class="glyphicon glyphicon-heart"></span><b> Android, comment √ßa marche ?</b><br />
+  ${TotalApp} applications ont √©t√© ajout√©es √† notre base de donn√©es.</center>
 <nav class="navbar navbar-default" role="navigation" style="margin:10px;">
 
 
@@ -152,7 +154,7 @@ ${getTopBar}
     <img src="resources/flat/1396987165_mobilesearch.png">
       <div class="caption"><center>
         <h3>Test</h3>
-        <p>Je tÈlÈcharge et test l'application Android sur mon BlackBerry.</p>
+        <p>Je t√©l√©charge et test l'application Android sur mon BlackBerry.</p>
         <p><a href="#" class="btn btn-primary" role="">#1</a></center></p>
       </div>
     </div>
@@ -167,7 +169,7 @@ ${getTopBar}
     <div class="thumbnail">
     <img src="resources/flat/1396987169_group47.png">
       <div class="caption"><center>
-        <h3>RÈsultat</h3>
+        <h3>R√©sultat</h3>
         <p>J'indique si l'application est fonctionelle ou non.</p>
         <p><a href="#" class="btn btn-warning" role="button">#2</a></center></p>
       </div>
@@ -182,8 +184,8 @@ ${getTopBar}
     <div class="thumbnail">
     <img src="resources/flat/1396987172_group10.png">
       <div class="caption"><center>
-        <h3>TerminÈ</h3>
-        <p>J'ai aidÈ la communautÈe des utilisateurs BlackBerry.</p>
+        <h3>Termin√©</h3>
+        <p>J'ai aid√© la communaut√©e des utilisateurs BlackBerry.</p>
         <p><a href="#" class="btn btn-success" role="button">#3</a></center></p>
       </div>
     </div>
@@ -194,11 +196,15 @@ ${getTopBar}
 </nav>
 </div>
 </div>
+
+
+
+
 <nav class="navbar navbar-default" role="navigation" style="margin-top:-5px;">
 <bottomText>
 <ul id="social">
 
-<center><b><p style="font-size:14px">BB Love Android on</p></b>
+<center><b><p style="font-size:14px">Suivez BB Love Android sur</p></b>
 <a href="https://www.facebook.com/bbloveandroid" target="_blank"><img src="resources/img/facebook.png"/></a>
 <a href="http://twitter.com/bbloveandroid" target="_blank"><img src="resources/img/twitter.png"/></a></center>
 <!-- 	 <li class="element"> <a href="http://twitter.com/bbloveandroid" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="medium" style="vertical-align: bottom;">:)</a> -->
@@ -211,11 +217,11 @@ ${getTopBar}
 </center>
 </ul>
 <%-- </ul><br /><center> --%>
-<!-- © 2014 BBLoveAndroid<br /> -->
+<!-- ¬© 2014 BBLoveAndroid<br /> -->
 <!-- Toute reproduction interdite sans l'autorisation de l'auteur.<br /> -->
-<!-- Blackberry est une marque dÈposÈe, soumise au droit d'auteur.<br /> -->
-<!-- Android est une marque dÈposÈe, soumise au droit d'auteur.<br /> -->
-<!-- En France, sa mise ‡ disposition est autorisÈe dans la limite des droits accordÈs par l'article L713-6 alinÈa b du Code de la propriÈtÈ intellectuelle et est reproduite ici en vertu de ces droits.</bottomText> -->
+<!-- Blackberry est une marque d√©pos√©e, soumise au droit d'auteur.<br /> -->
+<!-- Android est une marque d√©pos√©e, soumise au droit d'auteur.<br /> -->
+<!-- En France, sa mise √† disposition est autoris√©e dans la limite des droits accord√©s par l'article L713-6 alin√©a b du Code de la propri√©t√© intellectuelle et est reproduite ici en vertu de ces droits.</bottomText> -->
 <%-- </center></nav> --%>
 </center></bottomText></nav>
 </body>

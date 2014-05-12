@@ -22,9 +22,9 @@
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
 ${getTopBar}
-          <input type="text" class="form-control" placeholder="Rechercher">
+          <input type="text" name="AppName" id="AppName" class="form-control" placeholder="Rechercher">
         </div>
-        <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
+        <a href="#Seek" class="Seek btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
       </form>
     </div>
     </div>
@@ -82,7 +82,7 @@ ${getTopBar}
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
 		On transfére l'APK sur le téléphone (via USB ou en téléchargement direct depuis le téléphone).<br />
-		On ouvre l'APK depuis le téléphone, (attention l'initialisation peut être un peu longue).<br />
+		On ouvre l'APK depuis le téléphone (attention l'initialisation peut être un peu longue).<br />
 		<img src="resources/img/Tuto6.png">
     </div>
     </div>
@@ -97,8 +97,8 @@ ${getTopBar}
     </div>
     <div id="collapseFor" class="panel-collapse collapse">
       <div class="panel-body">
-		L'application téléchargé fonctionne ou non ?<br />
-		Pensez aux autres gens suceptible de la télcharger et mettez vos résultat ici !<br />
+		L'application téléchargée fonctionne ou non ?<br />
+		Pensez aux autres personnes suceptible de la télcharger et mettez vos résultats ici !<br />
      </div>
     </div>
   </div>

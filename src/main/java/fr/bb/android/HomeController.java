@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.bb.android.mysql.MysqlConnec;
+import fr.bb.android.pojos.Applications;
 import fr.bb.android.pojos.Users;
 import fr.bb.android.util.Mail;
 
@@ -45,6 +46,8 @@ public class HomeController {
  	   session.setAttribute("ip", ip);
  	   session.setAttribute("id", 0);
  	   model.addAttribute("getTopBar", getTopBar());
+		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+ 	   model.addAttribute("TotalApp", mysql.getTotalApp());
 	return "home";
 	}
 
@@ -81,6 +84,8 @@ public class HomeController {
 		session = request.getSession(true);	
 		ModelAndView model = new ModelAndView("index");
 		model.addObject("getTopBar", getTopBar());
+		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+	 	model.addObject("TotalApp", mysql.getTotalApp());
 		return model;
 	}
 	
@@ -130,10 +135,45 @@ public class HomeController {
 		String Type = "";
 		while (RowType.next())
 		{
-			Type = Type + "<option id=" + RowType.getInt("id") + ">" + RowType.getString("Name") + "</option>";
+			Type = Type + "<option id=" + RowType.getInt("id") + " value=" + RowType.getInt("id") + ">" + RowType.getString("Name") + "</option>";
 		}
 		model.addObject("Type",Type);
 		return model;	
+	}
+	
+//	var AppName = $("#Name").val();
+//	var Description = $("#Description").val();
+//	var Editeur = $("#Editeur").val();
+//	var Google = $("#Google").val();
+//	var Type = $("#Type").val();
+//	var Fonctionne = $("#Fonctionne").val();
+	@RequestMapping("NewApp.sd")
+	@ResponseBody
+	public String  NewwApp(HttpServletRequest request,String Name,String Description,String Editeur,String Google,int Type,int Fonctionne,int User)
+	{
+		session = request.getSession(true);	
+		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+		boolean check = false;
+		check = mysql.verifExist(Name);
+		if (check == true)
+		{
+			return "X";
+		}
+		else
+		{
+			Applications app = new Applications();
+			app.setName(Name);
+			app.setDescription(Description);
+			app.setGooglePlay(Google);
+			app.setEditeur(Editeur);
+			app.setOk(Fonctionne);
+			app.setType(Type);
+			app.setUser(User);
+			//record database
+			mysql.addApp(app);
+			return "ok";
+		}
+
 	}
 	
 	@RequestMapping("AppList.sd")
@@ -151,7 +191,7 @@ public class HomeController {
 			
 			if (RowApp.getInt("OK") == 1)
 			{
-				stat = "Compatible";
+				stat = "<font color=\"green\">Compatible</font>";
 				Liste = Liste + 
 						"<tr class=\"success\">"
 						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
@@ -160,11 +200,11 @@ public class HomeController {
 						+ "<td><b>" + stat + "</b></td>"
 						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
 						+ "<td>" + RowApp.getString("login") + "</td>" 
-						+ "<td><img src=\"resources/img/Info.png\"></td></tr>";
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\"><img src=\"resources/img/Info.png\"></a></td></tr>";
 			}
 			else
 			{
-				stat = "Incompatible";
+				stat = "<font color=\"red\">Incompatible</font>";
 				Liste = Liste + 
 						"<tr class=\"warning\">"
 						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
@@ -173,12 +213,89 @@ public class HomeController {
 						+ "<td><b>" + stat + "</b></td>"
 						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
 						+ "<td>" + RowApp.getString("login") + "</td>" 
-						+ "<td><img src=\"resources/img/Info.png\"></td></tr>";
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\" ><img src=\"resources/img/Info.png\"></a></td></tr>";
 			}
 	}
 		model.addObject("ListeApp",Liste);
 		return model;
 	}
+	
+	
+	@RequestMapping("Seek.sd")
+	public ModelAndView Seek(HttpServletRequest request,String AppName)
+	{
+		session = request.getSession(true);
+		ModelAndView model = new ModelAndView("AppList");
+		model.addObject("getTopBar",getTopBar());
+		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+		SqlRowSet RowApp = mysql.getSeekApp(AppName);
+		String Liste = "";
+		int verification = 0;
+		while (RowApp.next())
+		{
+			verification = 1;
+			String stat = "";
+			
+			if (RowApp.getInt("OK") == 1)
+			{
+				stat = "<font color=\"green\">Compatible</font>";
+				Liste = Liste + 
+						"<tr class=\"success\">"
+						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
+						+ "<td>" + RowApp.getString("Editeur") + "</td>"
+						+ "<td>" + RowApp.getString("Type") + "</td>"
+						+ "<td><b>" + stat + "</b></td>"
+						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
+						+ "<td>" + RowApp.getString("login") + "</td>" 
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\"><img src=\"resources/img/Info.png\"></a></td></tr>";
+			}
+			else
+			{
+				stat = "<font color=\"red\">Incompatible</font>";
+				Liste = Liste + 
+						"<tr class=\"warning\">"
+						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
+						+ "<td>" + RowApp.getString("Editeur") + "</td>"
+						+ "<td>" + RowApp.getString("Type") + "</td>"
+						+ "<td><b>" + stat + "</b></td>"
+						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
+						+ "<td>" + RowApp.getString("login") + "</td>" 
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\" ><img src=\"resources/img/Info.png\"></a></td></tr>";
+			}
+		}
+		if (verification == 0)
+		{
+			Liste = "<tr class=\"danger\">"
+					+ "<td><b>Aucun résultat pour :  " + AppName + "</b></td>"
+					+ "<td></td>"
+					+ "<td></td>"
+					+ "<td></td>"
+					+ "<td></a></td>"
+					+ "<td></td>" 
+					+ "<td></td></tr>";
+
+		}
+			model.addObject("ListeApp",Liste);
+			return model;
+	}
+	
+	@RequestMapping("ZoomApp.sd")
+	@ResponseBody
+	public String zoomapp(int idApp)
+	{
+		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+		Applications app = mysql.getApplication(idApp);
+		String retour = "";
+		String titre = "";
+		retour = "<b>Titre : </b>" + app.getName() + "<br />"
+				+ "<b>Description : </b>" + app.getDescription() + "<br />"
+						+ "<b>Lien GooglePlay : </b><a href=" + app.getGooglePlay() + ">ici</a><br />"
+								+ "<b>Editeur : </b>" + app.getEditeur();
+		titre = app.getName();
+		return titre + "/////"+ retour;
+	}
+	
+	
 	
 	
 	@RequestMapping("CreateLog.sd")
@@ -208,7 +325,6 @@ public class HomeController {
 					+ "<center><a href=http://37.187.47.201:8090/BB10Android/ValidCompte.sd?id="+ retour+"&user=" +login + " style=a:link{text-decoration:none}>"
 					+ "Valider mon compte</a></center><br/><br />"
 					+ "Ceci est un mail automatique merci de ne pas y r&eacutepondre.</div>", "");
-			//TODO envoit du mail pour valider le compte.
 			return "X";
 			
 		}
@@ -295,6 +411,7 @@ public class HomeController {
 		else
 		{
 			retour = "<div id=\"MonId\" name=\"MonId\" style=\"display:none\">" + session.getAttribute("id") + "</div>"
+					+ "<input type=\"hidden\" name=MonId value=" + session.getAttribute("id") + ">"
 					+ "<a href=\"#Logout\" id=\"Logout\" class=\"Logout\"><img src=\"resources/img/Account.png\" ></a>  "
 					+ "<a href=\"#AddApp\" id=\"AddApp\" class=\"AddApp btn btn-success\">Ajouter application</a>";		
 		}

@@ -22,9 +22,9 @@
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
 ${getTopBar}
-          <input type="text" class="form-control" placeholder="Rechercher">
+          <input type="text" name="AppName" id="AppName" class="form-control" placeholder="Rechercher">
         </div>
-        <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
+        <a href="#Seek" class="Seek btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>lass="glyphicon glyphicon-search"></span></a>
       </form>
     </div>
     </div>
@@ -38,12 +38,14 @@ ${getTopBar}
         <input name="login" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="login" id="login" />
       </p>
       <p class="pass">
-        <input name="pass" type="password" class="validate[required,custom[email]] feedback-input" id="pass" placeholder="Password" />
+        <input name="pass" type="password" class="pass[required,custom[email]] feedback-input" id="pass" placeholder="Password" 
+          />
       </p>
       <center>
 		<a href="#CreateMonLog" class="CreateMonLog btn btn-primary">Je n'ai pas de compte</a>
-		 <a href="#Login" class="Login btn btn-success">Connexion</a><br /><br />
+		 <a href="#Login" class="Login btn btn-success" >Connexion</a><br /><br />
 		 </center>
     </form>
   </div>
+  <input type="text" name="pass2" id="pass2" />
   </div>

@@ -24,9 +24,13 @@ public class MysqlConnec {
 		return retour;
 	}
 	
-	public void addApp(Applications applications)
+	public void addApp(Applications app)
 	{
 		
+		//		insert into Applications (Name,Description,Editeur,GooglePlay,Type,User,Ok) values
+		//('Sonic Dash','Evitement d''obstacle avec Sonic','SEGA','https://play.google.com/store/apps/details?id=com.sega.sonicdash&hl=fr',1,1,1);
+		String sql = "insert into Applications (Name,Description,Editeur,GooglePlay,Type,User,Ok) values (?,?,?,?,?,?,?);";
+		this.montemplate.update(sql,app.getName(),app.getDescription(),app.getEditeur(),app.getGooglePlay(),app.getType(),app.getUser(),app.getOk());
 	}
 	
 	public Applications getApp(int id)
@@ -132,6 +136,19 @@ public class MysqlConnec {
 		return app;
 	}
 	
+	public boolean verifExist(String name)
+	{
+		String sql = "Select COUNT(*) from Applications where Name = ?";
+		if (this.montemplate.queryForInt(sql,name) > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 	public int insertAPP(String Name,String Description,String Editeur,String GooglePlay,int Type,int User,int Ok)
 	{
 		String sql = "insert into Applications (Name,Description,Editeur,GooglePlay,Type,User,Ok) values (?,?,?,?,?,?,?)";
@@ -146,9 +163,29 @@ public class MysqlConnec {
 	
 	public SqlRowSet getAllApplications()
 	{
-		String sql = "Select app.id,app.Name,Description,Editeur,GooglePlay,T.Name as 'Type',u.login,OK from Applications as app "
+		String sql = "Select app.id,app.Name,Description,Editeur,GooglePlay,T.Name as 'Type',U.login,OK from Applications as app "
 					+ " inner join Type as T on app.Type = T.id "
 					+ " inner join Users as U on app.User = U.id";
 		return this.montemplate.queryForRowSet(sql);
+	}
+	
+	public SqlRowSet getSeekApp(String appname)
+	{		String sql = "Select app.id,app.Name,Description,Editeur,GooglePlay,T.Name as 'Type',U.login,OK from Applications as app "
+			+ " inner join Type as T on app.Type = T.id "
+			+ " inner join Users as U on app.User = U.id where app.Name like '%" + appname + "%'";
+			return this.montemplate.queryForRowSet(sql);
+		
+	}
+	
+	public int getTotalApp()
+	{
+		String sql = "Select COUNT(*) from Applications";
+		return this.montemplate.queryForInt(sql);
+	}
+	
+	public int getTotalUser()
+	{
+		String sql = "Select COUNT(*) from Users";
+		return this.montemplate.queryForInt(sql);
 	}
 }

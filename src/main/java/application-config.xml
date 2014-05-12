@@ -7,16 +7,17 @@
               http://www.springframework.org/schema/context
               http://www.springframework.org/schema/context/spring-context-3.0.xsd">
               
-<!--     cxcx           -->
+
 
 <!-- Dev parameters -->
-<bean id="dataSourceMYSQL" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-	<property name="url" value="jdbc:mysql://localhost/BBLoveAndroid"></property>
-	<property name="username" value="root"></property>
-	<property name="password" value=""></property>
-</bean>
+<!-- <bean id="dataSourceMYSQL" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> -->
+<!-- 	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property> -->
+<!-- 	<property name="url" value="jdbc:mysql://localhost/BBLoveAndroid"></property> -->
+<!-- 	<property name="username" value="root"></property> -->
+<!-- 	<property name="password" value=""></property> -->
+<!-- </bean> -->
 
+<!-- Prod parameters -->
 
 <bean id="MysqlConnec" class="fr.bb.android.mysql.MysqlConnec">
 <constructor-arg ref="dataSourceMYSQL"></constructor-arg>

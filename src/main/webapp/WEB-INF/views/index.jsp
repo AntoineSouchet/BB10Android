@@ -21,10 +21,13 @@
       </ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
-        ${getTopBar}
-          <input type="text" class="form-control" placeholder="Rechercher">
+
+
+		
+${getTopBar}
+          <input type="text" name="AppName" id="AppName" class="form-control" placeholder="Rechercher">
         </div>
-        <a href="#Seek" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
+        <a href="#Seek" class="Seek btn btn-primary"><span class="glyphicon glyphicon-search"></span></a>
       </form>
     </div>
     </div>
@@ -45,21 +48,21 @@
                 <h2>BB <span class="glyphicon glyphicon-heart"></span> Android</h2>
          		<div class="carousel-caption">
                   <h3>Tutorial</h3>
-                  <p>Découvez comment votre Blackberry peux utiliser vos APK.</p>
+                  <p>Découvez comment votre Blackberry peut utiliser vos APK.</p>
                 </div>
             </div>
             <div class="item">
                 <h2>Compatibilités</h2>
                 <div class="carousel-caption">
                   <h3>Informations</h3>
-                  <p>Découvrez la liste des applications testées et compatbiles.</p>
+                  <p>Découvrez la liste des applications testées et compatibles.</p>
                 </div>
             </div>
             <div class="item">
                 <h2>Réseaux</h2>
                 <div class="carousel-caption">
                   <h3>Facebook Twitter</h3>
-                  <p>Rejoingnez nous sur les réseaus sociaux #BBLoveAndroid</p>
+                  <p>Rejoingnez nous sur les réseaux sociaux #BBLoveAndroid</p>
                 </div>
             </div>
 <!--                <div class="item" style="background-color:black"> -->
@@ -68,9 +71,9 @@
                 <div class="carousel-caption">
 <!--                   <h3>Nos partenaires</h3> -->
                   <p> 
-                  <a href="https://www.1and1.fr/?kwk=276163219&ac=OM.FR.FR930K244307T7073a" target="_blank">
-                  <img src="http://imagesrv.adition.com/banners/268/xml/1und1am/FR_WM/DIY/fr_diy_an_728x90.gif" width="728" height="90"  border="0"/>
-                  </a>
+<!--                   <a href="https://www.1and1.fr/?kwk=276163219&ac=OM.FR.FR930K244307T7073a" target="_blank"> -->
+<!--                   <img src="http://imagesrv.adition.com/banners/268/xml/1und1am/FR_WM/DIY/fr_diy_an_728x90.gif" width="728" height="90"  border="0"/> -->
+<!--                   </a> -->
                   </p>
                 </div>
             </div>
@@ -88,7 +91,8 @@
 <!-- Fin du caroussel -->
 <br />
 
-  <center><b>BB <span class="glyphicon glyphicon-heart" /><b> Android, comment ça marche ?</b></center>
+  <center><b>BB <span class="glyphicon glyphicon-heart" /><b> Android, comment ça marche ?</b><br />
+  ${TotalApp} applications ont été ajoutées à notre base de données.</center>
 <nav class="navbar navbar-default" role="navigation" style="margin:10px;">
 
 
@@ -104,7 +108,6 @@
       <div class="caption"><center>
         <h3>Test</h3>
         <p>Je télécharge et test l'application Android sur mon BlackBerry.</p>
-        
         <p><a href="#" class="btn btn-primary" role="">#1</a></center></p>
       </div>
     </div>
@@ -120,7 +123,7 @@
     <img src="resources/flat/1396987169_group47.png">
       <div class="caption"><center>
         <h3>Résultat</h3>
-        <p>J'indique si l'application est compatible ou non.</p>
+        <p>J'indique si l'application est fonctionelle ou non.</p>
         <p><a href="#" class="btn btn-warning" role="button">#2</a></center></p>
       </div>
     </div>
@@ -134,7 +137,7 @@
     <div class="thumbnail">
     <img src="resources/flat/1396987172_group10.png">
       <div class="caption"><center>
-        <h3>Finis</h3>
+        <h3>Terminé</h3>
         <p>J'ai aidé la communautée des utilisateurs BlackBerry.</p>
         <p><a href="#" class="btn btn-success" role="button">#3</a></center></p>
       </div>
@@ -144,3 +147,5 @@
 </div>
 <!-- </div> -->
 </nav>
+</div>
+</div>
