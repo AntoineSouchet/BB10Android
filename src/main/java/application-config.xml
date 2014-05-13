@@ -19,6 +19,8 @@
 
 <!-- Prod parameters -->
 
+<bean id="dataSourceMYSQL" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+</bean>
 <bean id="MysqlConnec" class="fr.bb.android.mysql.MysqlConnec">
 <constructor-arg ref="dataSourceMYSQL"></constructor-arg>
 </bean>
