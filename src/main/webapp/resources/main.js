@@ -92,6 +92,17 @@ $(document).on("click", ".btn-zoomApp",function(){
 	});
 });
 
+//usr-zommApp
+$(document).on("click", ".usr-zommApp",function(){
+	var idUser = $(this).siblings("input:hidden").val();
+	$.post('/' + redirection + '/zoomUsr.sd?idUser=' +idUser,function(data)
+	{
+		var chaine = data.split("/////");
+		$("#TitreUsr").html(chaine[0]);
+		$("#infoUsr").html("<b>Sexe : </b>" + chaine[1] + "<br /><b>Nombe d'applications test&eacuteses : </b>" + chaine[2] + "<br /><b>Grade : </b>" + chaine[3]);
+	});
+});
+
 //Search Application
 $(document).on("click", ".Seek",function() {
 	var AppName = $("#AppName").val();
@@ -138,10 +149,12 @@ $(document).on("click", ".NewApp", function() {
 	if(AppName == "")
 		{
 		$("#Incomp").show();
+		return false;
 		}
 	if (Description == "")
 		{
 		$("#Incomp").show();
+		return false;
 		}
 	$.post('/' + redirection + '/NewApp.sd?Name=' + AppName + '&Description=' + Description + '&Editeur=' + Editeur + '&Google=' + Google + '&Type=' + Type + '&Fonctionne=' + Fonctionne + '&User=' + User, function(data) {
 		if (data == "X")

@@ -33,4 +33,54 @@ public class MailTest {
 				+ "Valider mon compte</a></center><br/><br />"
 				+ "Ceci est un mail automatique merci de ne pas r&eacutepondre.</div>", "");
 	}
+	
+	
+	@Test
+	public void Test02()
+	{
+		String sql = "Select * from Applications where id = X; from blalbla where ALTER ";
+		int position = 0;
+		String retour = "";
+		position=sql.indexOf("DELETE"); 
+		if (position != -1) {
+			retour = "IP ADSL 2";   
+		}
+		position=sql.indexOf("UPDATE"); 
+		if (position != -1) {
+			retour = "IP ADSL 2";   
+		}
+		position=sql.indexOf("TRUNCATE"); 
+		if (position != -1) {
+			retour = "IP ADSL 2";   
+		}
+		position=sql.indexOf("DROP"); 
+		if (position != -1) {
+			retour = "IP ADSL 2";   
+		}
+		position=sql.indexOf("ALTER"); 
+		if (position != -1) {
+			retour = "IP ADSL 2";   
+		}
+		position=sql.indexOf("delete"); 
+		if (position != -1) {
+			retour = "IP ADSL 2";   
+		}
+		position=sql.indexOf("update"); 
+		if (position != -1) {
+			retour = "IP ADSL 2";   
+		}
+		position=sql.indexOf("truncate"); 
+		if (position != -1) {
+			retour = "IP ADSL 2";   
+		}
+		position=sql.indexOf("drop"); 
+		if (position != -1) {
+			retour = "IP ADSL 2";   
+		}
+		position=sql.indexOf("alter"); 
+		if (position != -1) {
+			retour = "IP ADSL 2";   
+		}
+		System.out.println(retour);
+	}
 }

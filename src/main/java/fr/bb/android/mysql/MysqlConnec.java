@@ -24,13 +24,12 @@ public class MysqlConnec {
 		return retour;
 	}
 	
+
 	public void addApp(Applications app)
-	{
-		
-		//		insert into Applications (Name,Description,Editeur,GooglePlay,Type,User,Ok) values
-		//('Sonic Dash','Evitement d''obstacle avec Sonic','SEGA','https://play.google.com/store/apps/details?id=com.sega.sonicdash&hl=fr',1,1,1);
+	{		
 		String sql = "insert into Applications (Name,Description,Editeur,GooglePlay,Type,User,Ok) values (?,?,?,?,?,?,?);";
-		this.montemplate.update(sql,app.getName(),app.getDescription(),app.getEditeur(),app.getGooglePlay(),app.getType(),app.getUser(),app.getOk());
+		if (CheckInjection(sql) == false) {
+		this.montemplate.update(sql,app.getName(),app.getDescription(),app.getEditeur(),app.getGooglePlay(),app.getType(),app.getUser(),app.getOk()); }
 	}
 	
 	public Applications getApp(int id)
@@ -39,11 +38,6 @@ public class MysqlConnec {
 		return app;
 	}
 		
-	public SqlRowSet Rechercher(String recherche)
-	{
-		sql = "";
-		return this.montemplate.queryForRowSet(sql,recherche);
-	}
 	
 	public int CreateLogin(Users u)
 	{
@@ -61,7 +55,8 @@ public class MysqlConnec {
 			return 0;
 		}
 		sql = "insert into Users (login,pass,email,age,sexe,valide) values (?,?,?,?,?,?)";
-		this.montemplate.update(sql,u.getLogin(),u.getPassword(),u.getEmail(),u.getAge(),u.getSexe(),u.getValide());
+		if (CheckInjection(sql) == false){
+		this.montemplate.update(sql,u.getLogin(),u.getPassword(),u.getEmail(),u.getAge(),u.getSexe(),u.getValide());}
 		
 		String sqlid = "Select id from Users where login = ? and pass=? and email=?";
 		return this.montemplate.queryForInt(sqlid,u.getLogin(),u.getPassword(),u.getEmail());
@@ -163,14 +158,14 @@ public class MysqlConnec {
 	
 	public SqlRowSet getAllApplications()
 	{
-		String sql = "Select app.id,app.Name,Description,Editeur,GooglePlay,T.Name as 'Type',U.login,OK from Applications as app "
+		String sql = "Select app.id,app.Name,Description,Editeur,GooglePlay,T.Name as 'Type',U.login,OK,U.id as 'UserId' from Applications as app "
 					+ " inner join Type as T on app.Type = T.id "
 					+ " inner join Users as U on app.User = U.id";
 		return this.montemplate.queryForRowSet(sql);
 	}
 	
 	public SqlRowSet getSeekApp(String appname)
-	{		String sql = "Select app.id,app.Name,Description,Editeur,GooglePlay,T.Name as 'Type',U.login,OK from Applications as app "
+	{		String sql = "Select app.id,app.Name,Description,Editeur,GooglePlay,T.Name as 'Type',U.login,OK,U.id as 'UserId' from Applications as app "
 			+ " inner join Type as T on app.Type = T.id "
 			+ " inner join Users as U on app.User = U.id where app.Name like '%" + appname + "%'";
 			return this.montemplate.queryForRowSet(sql);
@@ -187,5 +182,65 @@ public class MysqlConnec {
 	{
 		String sql = "Select COUNT(*) from Users";
 		return this.montemplate.queryForInt(sql);
+	}
+	
+	
+	public int getAppUser(int id)
+	{
+		String sql = "Select COUNT(*) from Applications where User = ?";
+		return this.montemplate.queryForInt(sql,id);
+	}
+	
+	public SqlRowSet getUserInformation(int id)
+	{
+		String sql = "Select * from Users where id = ?";
+		return this.montemplate.queryForRowSet(sql,id);
+	}
+	
+	
+	public boolean CheckInjection(String sql)
+	{
+		int position = 0;
+		position=sql.indexOf("DELETE"); 
+		if (position != -1) {
+			return true; 
+		}
+		position=sql.indexOf("UPDATE"); 
+		if (position != -1) {
+			return true; 
+		}
+		position=sql.indexOf("TRUNCATE"); 
+		if (position != -1) {
+			return true;  
+		}
+		position=sql.indexOf("DROP"); 
+		if (position != -1) {
+			return true;   
+		}
+		position=sql.indexOf("ALTER"); 
+		if (position != -1) {
+			return true; 
+		}
+		position=sql.indexOf("delete"); 
+		if (position != -1) {
+			return true; 
+		}
+		position=sql.indexOf("update"); 
+		if (position != -1) {
+			return true; 
+		}
+		position=sql.indexOf("truncate"); 
+		if (position != -1) {
+			return true; 
+		}
+		position=sql.indexOf("drop"); 
+		if (position != -1) {
+			return true; 
+		}
+		position=sql.indexOf("alter"); 
+		if (position != -1) {
+			return true;   
+		}
+		return false;
 	}
 }

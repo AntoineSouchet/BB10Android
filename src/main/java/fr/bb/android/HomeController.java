@@ -199,7 +199,7 @@ public class HomeController {
 						+ "<td>" + RowApp.getString("Type") + "</td>"
 						+ "<td><b>" + stat + "</b></td>"
 						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
-						+ "<td>" + RowApp.getString("login") + "</td>" 
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + RowApp.getString("login") + "</a></td>" 
 						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\"><img src=\"resources/img/Info.png\"></a></td></tr>";
 			}
 			else
@@ -212,7 +212,7 @@ public class HomeController {
 						+ "<td>" + RowApp.getString("Type") + "</td>"
 						+ "<td><b>" + stat + "</b></td>"
 						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
-						+ "<td>" + RowApp.getString("login") + "</td>" 
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + RowApp.getString("login") + "</a></td>" 
 						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\" ><img src=\"resources/img/Info.png\"></a></td></tr>";
 			}
 	}
@@ -295,7 +295,40 @@ public class HomeController {
 		return titre + "/////"+ retour;
 	}
 	
-	
+	@RequestMapping("zoomUsr.sd")
+	@ResponseBody
+	public String zoomUsr(int idUser)
+	{
+		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+		int TotalApp = mysql.getAppUser(idUser);
+		SqlRowSet User = mysql.getUserInformation(idUser);
+		String retour = "";
+		String sexe = "";
+		String grade = "Baby BB Lover";
+		if (TotalApp >= 10 && TotalApp < 20)
+		{grade = "Bon BB Lover";}
+		else if (TotalApp >= 20 && TotalApp < 30)
+		{grade = "BB Lover";}
+		else if (TotalApp >= 30 && TotalApp < 40)
+		{grade = "Super BB Lover";}
+		else if (TotalApp > 40)
+		{grade = "Enorme BB Lover";}
+		while (User.next())
+		{
+			if (User.getInt("sexe") == 1)
+			{
+				sexe = "Homme";
+			}
+			else
+			{
+				sexe = "Femme";
+			}
+			retour = User.getString("login") + "/////" + sexe + "/////" + TotalApp + "/////" + grade;
+			
+			
+		}
+		return retour;
+	}
 	
 	
 	@RequestMapping("CreateLog.sd")
