@@ -99,7 +99,7 @@ $(document).on("click", ".usr-zommApp",function(){
 	{
 		var chaine = data.split("/////");
 		$("#TitreUsr").html(chaine[0]);
-		$("#infoUsr").html("<b>Sexe : </b>" + chaine[1] + "<br /><b>Nombe d'applications test&eacuteses : </b>" + chaine[2] + "<br /><b>Grade : </b>" + chaine[3]);
+		$("#infoUsr").html("<b>Sexe : </b>" + chaine[1] + "<br /><b>Nombe d'applications que " + chaine[0] + " a test&eacute;(s) : </b>" + chaine[2] + "<br /><b>Grade : </b>" + chaine[3]);
 	});
 });
 

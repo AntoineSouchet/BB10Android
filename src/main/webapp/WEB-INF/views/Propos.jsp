@@ -32,15 +32,17 @@ ${getTopBar}
 
 <div id="Record" name="Record" class="jumbotron" style="width:100%;margin-bottom:0px;">
 <fieldset style="margin:5%;margin-top:0px;"><legend>A propos de BB <span class="glyphicon glyphicon-heart">Android : </legend>
-<h3>Equipe : </h3><br />
+<h3>Equipes : </h3><br />
 <a href="http://www.linkedin.com/pub/antoine-souchet/5a/32b/70a" target="_blank">
 <img src="resources/img/link.png" align="absmiddle"></a> 
-<b>Fondateur : </b>Souchet Antoine <br /><br />
-<a href="http://www.linkedin.com/pub/mickaël-cirany/59/70/990" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b>Architecture réseau : </b>Cirany Mickael <br /><br />
-<a href="http://www.linkedin.com/pub/difallah-mehdi/19/882/323" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b>Résponsable administratif & financier : </b>Difallah Mehdi <br /><br />
+Souchet Antoine,
+<a href="http://www.linkedin.com/pub/mickaël-cirany/59/70/990" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b></b> Cirany Mickael, 
+<a href="https://www.linkedin.com/profile/view?id=183998778&locale=fr_FR&trk=tyah&trkInfo=tarId%3A1399978240618%2Ctas%3ANicol%2Cidx%3A1-1-1" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b></b> Aubin Nicolas, 
+<a href="" target="_blank"><img src="resources/img/link.png" align="absmiddle"></a> <b></b> Difallah Mehdi.
 <br />
 <h3>Matériels disponibles :</h3>
 Blackberry Q10 US noir<br />
+Blackberry Q10 FR noir<br />
 Blackberry Z10 FR noir<br />
 Blackberry Q5 FR noir <br />
 Blackberry Q5 FR blanc <br />

@@ -75,7 +75,7 @@ ${getTopBar}
   </div>
   <br />
   <div class="alert alert-warning" name="CreateNOK" id="CreateNOK" style="display:none">Une application avec le même nom est déja dans la base de données.</div>
-  <div class="alert alert-success" name="CreateOK" id="CreateOK" style="display:none">L'application a été ajouté ! Merci de votre contribution.</div>
+  <div class="alert alert-success" name="CreateOK" id="CreateOK" style="display:none">L'application a été ajoutée ! Merci de votre contribution.</div>
 <div class="alert alert-warning" name="Incomp" id="Incomp" style="display:none">Toutes les données nécéssaires ne sont pas saisies !</div>
   </div>
 

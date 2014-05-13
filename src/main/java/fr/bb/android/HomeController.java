@@ -269,7 +269,7 @@ public class HomeController {
 		if (verification == 0)
 		{
 			Liste = "<tr class=\"danger\">"
-					+ "<td><b>Aucun rŽsultat pour :  " + AppName + "</b></td>"
+					+ "<td><b>Aucun rï¿½sultat pour :  " + AppName + "</b></td>"
 					+ "<td></td>"
 					+ "<td></td>"
 					+ "<td></td>"
@@ -308,15 +308,15 @@ public class HomeController {
 		SqlRowSet User = mysql.getUserInformation(idUser);
 		String retour = "";
 		String sexe = "";
-		String grade = "Baby BB Lover";
+		String grade = "Baby BB Lover <img src=\"resources/img/Stars.png\">";
 		if (TotalApp >= 10 && TotalApp < 20)
-		{grade = "Bon BB Lover";}
+		{grade = "Bon BB Lover <img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\">";}
 		else if (TotalApp >= 20 && TotalApp < 30)
-		{grade = "BB Lover";}
+		{grade = "BB Lover <img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\">";}
 		else if (TotalApp >= 30 && TotalApp < 40)
-		{grade = "Super BB Lover";}
+		{grade = "Super BB Lover <img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\">";}
 		else if (TotalApp > 40)
-		{grade = "Enorme BB Lover";}
+		{grade = "Maitre BB Lover <img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\">";}
 		while (User.next())
 		{
 			if (User.getInt("sexe") == 1)
@@ -414,7 +414,7 @@ public class HomeController {
 		boolean retour = mysql.validMail(id,user);
 		if (retour == true)
 		{
-			return "<center><b>Merci d'avoir crŽer votre compte sur BB10LoveAndroid, vous pouvez dŽs ˆ prŽsent vous connecter au site</b><br />"
+			return "<center><b>Merci d'avoir crï¿½er votre compte sur BB10LoveAndroid, vous pouvez dï¿½s ï¿½ prï¿½sent vous connecter au site</b><br />"
 					+ "www.BBLoveAndroid.com";
 		}
 		else
