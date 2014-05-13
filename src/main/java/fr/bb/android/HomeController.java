@@ -22,6 +22,7 @@ import fr.bb.android.mysql.MysqlConnec;
 import fr.bb.android.pojos.Applications;
 import fr.bb.android.pojos.Users;
 import fr.bb.android.util.Mail;
+import fr.bb.android.util.StringCorrection;
 
 @Controller
 public class HomeController {
@@ -183,6 +184,7 @@ public class HomeController {
 		ModelAndView model = new ModelAndView("AppList");
 		model.addObject("getTopBar",getTopBar());
 		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+		StringCorrection correction = new StringCorrection();
 		SqlRowSet RowApp = mysql.getAllApplications();
 		String Liste = "";
 		while (RowApp.next())
@@ -199,7 +201,7 @@ public class HomeController {
 						+ "<td>" + RowApp.getString("Type") + "</td>"
 						+ "<td><b>" + stat + "</b></td>"
 						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + RowApp.getString("login") + "</a></td>" 
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + correction.Majuscule(RowApp.getString("login")) + "</a></td>" 
 						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\"><img src=\"resources/img/Info.png\"></a></td></tr>";
 			}
 			else
@@ -212,8 +214,8 @@ public class HomeController {
 						+ "<td>" + RowApp.getString("Type") + "</td>"
 						+ "<td><b>" + stat + "</b></td>"
 						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + RowApp.getString("login") + "</a></td>" 
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\" ><img src=\"resources/img/Info.png\"></a></td></tr>";
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + correction.Majuscule(RowApp.getString("login")) + "</a></td>" 
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\"><img src=\"resources/img/Info.png\"></a></td></tr>";
 			}
 	}
 		model.addObject("ListeApp",Liste);
@@ -228,6 +230,7 @@ public class HomeController {
 		ModelAndView model = new ModelAndView("AppList");
 		model.addObject("getTopBar",getTopBar());
 		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+		StringCorrection correction = new StringCorrection();
 		SqlRowSet RowApp = mysql.getSeekApp(AppName);
 		String Liste = "";
 		int verification = 0;
@@ -246,7 +249,7 @@ public class HomeController {
 						+ "<td>" + RowApp.getString("Type") + "</td>"
 						+ "<td><b>" + stat + "</b></td>"
 						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
-						+ "<td>" + RowApp.getString("login") + "</td>" 
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + correction.Majuscule(RowApp.getString("login")) + "</a></td>" 
 						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\"><img src=\"resources/img/Info.png\"></a></td></tr>";
 			}
 			else
@@ -259,8 +262,8 @@ public class HomeController {
 						+ "<td>" + RowApp.getString("Type") + "</td>"
 						+ "<td><b>" + stat + "</b></td>"
 						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
-						+ "<td>" + RowApp.getString("login") + "</td>" 
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\" ><img src=\"resources/img/Info.png\"></a></td></tr>";
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + correction.Majuscule(RowApp.getString("login")) + "</a></td>" 
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\"><img src=\"resources/img/Info.png\"></a></td></tr>";
 			}
 		}
 		if (verification == 0)
@@ -301,6 +304,7 @@ public class HomeController {
 	{
 		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
 		int TotalApp = mysql.getAppUser(idUser);
+		StringCorrection correction = new StringCorrection();
 		SqlRowSet User = mysql.getUserInformation(idUser);
 		String retour = "";
 		String sexe = "";
@@ -323,7 +327,7 @@ public class HomeController {
 			{
 				sexe = "Femme";
 			}
-			retour = User.getString("login") + "/////" + sexe + "/////" + TotalApp + "/////" + grade;
+			retour = correction.Majuscule(User.getString("login")) + "/////" + sexe + "/////" + TotalApp + "/////" + grade;
 			
 			
 		}
