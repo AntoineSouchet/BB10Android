@@ -2,10 +2,10 @@ $(function() {
 	
 	
 	//dev
-	//var redirection = "android";
+	var redirection = "android";
 	
 	//prod
-	var redirection = "BB10Android";
+	//var redirection = "BB10Android";
     // Activate carousel
     $("#myCarousel").carousel();
     
@@ -35,6 +35,24 @@ $(function() {
 $(document).on("click", ".AddApp", function () {
 
 		$.post('/' + redirection + '/AddApp.sd', function(data) {
+			$("#MyBody").html(data);
+		});
+	});
+
+
+//GeneratePass
+$(document).on("click", ".GeneratePass", function () {
+
+	var email = $("#email").val();
+	$.post('/' + redirection + '/GeneratePass.sd?email=' + email, function(data) {
+		$("#MyBody").html(data);
+	});
+});
+
+//MDP Perdu
+$(document).on("click", ".MdpLost", function () {
+
+		$.post('/' + redirection + '/MdpLost.sd', function(data) {
 			$("#MyBody").html(data);
 		});
 	});

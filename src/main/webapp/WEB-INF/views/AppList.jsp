@@ -14,9 +14,9 @@
 <!--     Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#Home" class="Home" id="Home" name="Home">Home</a></li>
+        <li><a href="#Home" class="Home" id="Home" name="Home">Accueil</a></li>
         <li class="active"><a href="#AppList" class="AppList" name="AppList" id="AppList">Applications</a></li>
-        <li><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutorials</a></li>
+        <li><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutoriel</a></li>
         <li><a href="#Propos" class="Propos" id="Propos" name="Propos">A propos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
@@ -32,14 +32,14 @@ ${getTopBar}
 
 <div id="Record" name="Record" class="jumbotron" style="width:100%;margin-bottom:0px;">
 <table class="order-table table table-striped table-hover">
-<thead>
-<tr><th>Nom</th>
-<th>Editeur</th>
-<th>Type</th>
-<th>Status</th>
-<th>GooglePlay</th>
-<th>Utilisateur</th>
-<th>Informations</th>
+<thead bgcolor="#295e92" font-color="#fff">
+<tr><th><font color="#fff">Nom</font></th>
+<th><font color="#fff">Editeur</font></th>
+<th><font color="#fff">Type</font></th>
+<th><font color="#fff">Statut</font></th>
+<th><font color="#fff">Utilisateur</font></th>
+<th><font color="#fff">GooglePlay</font></th>
+<th><font color="#fff">Informations</font></th>
 </thead>
 <tbody>
 ${ListeApp}

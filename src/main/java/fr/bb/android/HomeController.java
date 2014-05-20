@@ -70,6 +70,33 @@ public class HomeController {
 		return model;
 	}
 	
+	@RequestMapping("MdpLost.sd")
+	public ModelAndView MdpLost(HttpServletRequest request)
+	{
+		session = request.getSession(true);	
+		ModelAndView model = new ModelAndView("RecupMDP");
+		model.addObject("getTopBar", getTopBar());
+		return model;
+	}
+	
+	
+	@RequestMapping("GeneratePass.sd")
+	@ResponseBody
+	public String GetMdp(String email) throws MessagingException, IOException
+	{
+		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+		if (mysql.checkEmail(email) > 0)
+		{
+			mysql.generatePWD(email);	
+			return "Un nouveau mot de passe vous a été envoyé sur votre addresse : " + email;
+		}
+		else
+		{
+			return "Aucun compte sur BBLoveAndroid n'utilise l'addresse mail : " + email;
+		}
+
+	}
+	
 	@RequestMapping("Propos.sd")
 	public ModelAndView Propos(HttpServletRequest request)
 	{
@@ -124,6 +151,7 @@ public class HomeController {
 		model.addObject("retour",retour);
 		return model;
 	}
+	
 	
 	@RequestMapping("AddApp.sd")
 	public ModelAndView AddApp(HttpServletRequest request)
@@ -195,27 +223,27 @@ public class HomeController {
 			{
 				stat = "<font color=\"green\">Compatible</font>";
 				Liste = Liste + 
-						"<tr class=\"success\">"
+						"<tr>"
 						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
 						+ "<td>" + RowApp.getString("Editeur") + "</td>"
 						+ "<td>" + RowApp.getString("Type") + "</td>"
 						+ "<td><b>" + stat + "</b></td>"
-						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
 						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + correction.Majuscule(RowApp.getString("login")) + "</a></td>" 
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\"><img src=\"resources/img/Info.png\"></a></td></tr>";
+						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn btn-primary btn-zoomApp\">Plus</a></td></tr>";
 			}
 			else
 			{
 				stat = "<font color=\"red\">Incompatible</font>";
 				Liste = Liste + 
-						"<tr class=\"warning\">"
+						"<tr>"
 						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
 						+ "<td>" + RowApp.getString("Editeur") + "</td>"
 						+ "<td>" + RowApp.getString("Type") + "</td>"
 						+ "<td><b>" + stat + "</b></td>"
-						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
 						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + correction.Majuscule(RowApp.getString("login")) + "</a></td>" 
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\"><img src=\"resources/img/Info.png\"></a></td></tr>";
+						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
+						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn btn-primary btn-zoomApp\">Plus</a></td></tr>";
 			}
 	}
 		model.addObject("ListeApp",Liste);
@@ -269,7 +297,7 @@ public class HomeController {
 		if (verification == 0)
 		{
 			Liste = "<tr class=\"danger\">"
-					+ "<td><b>Aucun r�sultat pour :  " + AppName + "</b></td>"
+					+ "<td><b>Aucun résultat pour :  " + AppName + "</b></td>"
 					+ "<td></td>"
 					+ "<td></td>"
 					+ "<td></td>"
@@ -414,7 +442,7 @@ public class HomeController {
 		boolean retour = mysql.validMail(id,user);
 		if (retour == true)
 		{
-			return "<center><b>Merci d'avoir cr�er votre compte sur BB10LoveAndroid, vous pouvez d�s � pr�sent vous connecter au site</b><br />"
+			return "<center><b>Merci d'avoir cr�er votre compte sur BBLoveAndroid, vous pouvez d�s � pr�sent vous connecter au site</b><br />"
 					+ "www.BBLoveAndroid.com";
 		}
 		else
@@ -437,6 +465,16 @@ public class HomeController {
 	public String getTopBar()
 	{
 		String retour = "";
+		if(session.getAttribute("Login").toString().contentEquals("") == true)
+		{
+			retour = "<a href=\"#PageLog\" class=\"PageLog btn btn-primary\">Connexion</a>";
+		   session.setAttribute("Login", "Invite");
+	 	   session.setAttribute("Email", "Invite");
+	 	   session.setAttribute("Sexe", "");
+	 	   session.setAttribute("ip", ip);
+	 	   session.setAttribute("id", 0);
+	 	   return retour;
+		}
 		if (session.getAttribute("Login").toString().contentEquals("Invite") == true)
 		{
 			retour = "<a href=\"#PageLog\" class=\"PageLog btn btn-primary\">Connexion</a>";

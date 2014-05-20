@@ -1,5 +1,10 @@
 package fr.bb.android.mysql;
 
+import java.io.IOException;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+import javax.mail.MessagingException;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -7,6 +12,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import fr.bb.android.pojos.Applications;
 import fr.bb.android.pojos.Users;
+import fr.bb.android.util.Mail;
 
 public class MysqlConnec {
 	
@@ -60,6 +66,34 @@ public class MysqlConnec {
 		
 		String sqlid = "Select id from Users where login = ? and pass=? and email=?";
 		return this.montemplate.queryForInt(sqlid,u.getLogin(),u.getPassword(),u.getEmail());
+	}
+	
+	public int checkEmail(String mail)
+	{
+		String sql = "Select COUNT(*) from User where email = ?";
+		return this.montemplate.queryForInt(sql,mail);
+	}
+	public String generatePWD(String mail) throws MessagingException, IOException
+	{
+		String sql = "update User set pass = ? where email = ?";
+		SecureRandom random = new SecureRandom();
+		String NewPwd = new BigInteger(130, random).toString(32);
+		NewPwd = NewPwd.substring(1, 9);
+		this.montemplate.update(sql,NewPwd,mail);
+		Mail MonMail = new Mail();
+		MonMail.connect("auth.smtp.1and1.fr", "contacts@bbloveandroid.com", "Kikoo2031");
+		
+		MonMail.send("contacts@bbloveandroid.com", mail, "BBLoveAndroid recréationd de votre Mot de passe", "<html><head>"
+				+ "<link rel=\"stylesheet\" href=\"http://37.187.47.201:8080/BB10Android/resources/bootstrap-3.1.1/css/bootstrap.min.css\" type=\"text/css\" />"
+				+ "<link rel=\"stylesheet\" href=\"http://37.187.47.201:8080/BB10Android/resources/bootstrap-3.1.1/css/bootstrap-theme.min.css\" type=\"text/css\" />"
+				+ "<style type=\"text/css\">a:link{text-decoration:none}</style>"
+				+ "</head>"
+				+ "<body style=background-color:#295e92;color:white;a:link{text-decoration:none}>"
+				+ "<center><img src=\"http://37.187.47.201:8090/BB10Android/resources/img/MyBBLOVE.png\"></center><br />"
+				+ "Bonjour vous avez une demande de réinitialisation de votre mot de passe sur BBLoveAndroid"
+				+ "Votre nouveau mot de passe est : " + NewPwd + ".<br />"
+				+ "A bientot sur le site !</div>", "");
+		return "ok";
 	}
 	
 	public boolean validMail(int id,String user)
@@ -160,7 +194,7 @@ public class MysqlConnec {
 	{
 		String sql = "Select app.id,app.Name,Description,Editeur,GooglePlay,T.Name as 'Type',U.login,OK,U.id as 'UserId' from Applications as app "
 					+ " inner join Type as T on app.Type = T.id "
-					+ " inner join Users as U on app.User = U.id";
+					+ " inner join Users as U on app.User = U.id order by app.id desc";
 		return this.montemplate.queryForRowSet(sql);
 	}
 	

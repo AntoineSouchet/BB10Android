@@ -34,20 +34,12 @@ ${getTopBar}
 <div id="form" style=width:400px;margin-left:auto;margin-right:auto;margin-top:1%;>
     <form class="form" id="form1">
       
-      <p class="login">
-        <input name="login" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="login" id="login" />
-      </p>
-      <p class="pass">
-        <input name="pass" type="password" class="pass[required,custom[email]] feedback-input" id="pass" placeholder="Password" 
-          />
+      <p class="email">
+        <input name="email" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Saisir votre Email" id="email" />
       </p>
       <center>
-		<a href="#CreateMonLog" class="CreateMonLog btn btn-primary">Je n'ai pas de compte</a>
-		 <a href="#Login" class="Login btn btn-success" >Connexion</a><br /><br />
+		 <a href="#GeneratePass" class="GeneratePass btn btn-success" >Récupérer mon mot de passe</a><br /><br />
 		 </center><br />
-		 <center>
-		 <a href="#MdpLost" class="MdpLost">J'ai perdu mon mot de passe</a>
-		 </center>
     </form>
   </div>
   </div>

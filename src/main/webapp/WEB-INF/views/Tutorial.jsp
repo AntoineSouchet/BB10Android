@@ -14,9 +14,9 @@
 <!--     Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#Home" class="Home" id="Home" name="Home">Home</a></li>
+        <li><a href="#Home" class="Home" id="Home" name="Home">Accueil</a></li>
         <li><a href="#AppList" class="AppList" id="AppList" name="AppList">Applications</a></li>
-        <li class="active"><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutorials</a></li>
+        <li class="active"><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutoriel</a></li>
         <li><a href="#Propos" class="Propos" id="Propos" name="Propos">A propos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
@@ -60,13 +60,13 @@ ${getTopBar}
     </div>
     <div id="collapseTwo" class="panel-collapse collapse">
       <div class="panel-body">
-		Plusieur choix s'offre à vous, ici nous préférons récupérer via le Google Play.<br />
-		Pour ce faire rendez-vous sur le site de Google : <a href="https://play.google.com/store" target="_blank">https://play.google.com/store</a> <br />
-		La cherche l'application que vous souhaitez (en exemple nous prendrons Le Figaro)<br />
+		Plusieur choix s'offre à vous, ici nous préférons récupérer via Google Play.<br />
+		Pour ce faire, rendez-vous sur le site de Google : <a href="https://play.google.com/store" target="_blank">https://play.google.com/store</a> <br />
+		Ensuite on cherche l'application que vous souhaitez (en exemple nous prendrons Le Figaro)<br />
 		On récupére l'adresse de l'application.<br />
 		<img src="resources/img/Tuto4.png"><br />
 		Copier coller ce lien ici : <a href="http://apps.evozi.com/apk-downloader/" target="_blank">http://apps.evozi.com/apk-downloader/ </a><br />
-		Il nous reste plus qu'a télécharger l'APK.<br />
+		Il nous reste plus qu'à télécharger l'APK.<br />
 		<img src="resources/img/Tuto5.png">
      </div>
     </div>
@@ -75,7 +75,7 @@ ${getTopBar}
     <div class="panel-heading">
       <h4 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-          Etape 3 : Installer l'apk sur vote téléphone.
+          Etape 3 : Installer l'apk sur votre téléphone.
         </a>
       </h4>
     </div>
@@ -98,7 +98,7 @@ ${getTopBar}
     <div id="collapseFor" class="panel-collapse collapse">
       <div class="panel-body">
 		L'application téléchargée fonctionne ou non ?<br />
-		Pensez aux autres personnes suceptible de la télcharger et mettez vos résultats ici !<br />
+		Pensez aux autres personnes suceptibles de la télcharger et mettez vos résultats ici !<br />
      </div>
     </div>
   </div>

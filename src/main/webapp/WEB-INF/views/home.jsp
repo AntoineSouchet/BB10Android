@@ -5,8 +5,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>BB <3 Android</title>
-</head>
+<title>BB <3 Android</title>
 <script src="resources/js/jquery-1.9.1.js"></script>
 <script src="resources/js/jquery-ui.js"></script>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -42,6 +41,7 @@ bottomText {
 #social{margin: 0;margin-top:5px;}
 .element{display:inline-block;margin: 0 15px;vertical-align:top;}
 </style>
+</head>
 <body>
 <div id="MyBody">
 
@@ -61,9 +61,9 @@ bottomText {
 <!--     Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#Home">Home</a></li>
+        <li class="active"><a href="#Home">Accueil</a></li>
         <li><a href="#AppList" class="AppList" id="AppList" name="AppList">Applications</a></li>
-        <li><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutorials</a></li>
+        <li><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutoriel</a></li>
         <li><a href="#Propos" class="Propos" id="Propos" name="Propos">A propos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
@@ -226,3 +226,5 @@ ${getTopBar}
 </center></bottomText></nav>
 </body>
 </html>
+
+

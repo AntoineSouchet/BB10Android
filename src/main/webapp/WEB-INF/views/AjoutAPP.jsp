@@ -14,9 +14,9 @@
 <!--     Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#Home" class="Home" id="Home" name="Home">Home</a></li>
+        <li><a href="#Home" class="Home" id="Home" name="Home">Accueil</a></li>
         <li class="active"><a href="#AppList" class="AppList" id="AppList" name="AppList">Applications</a></li>
-        <li><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutorials</a></li>
+        <li><a href="#Tuto" class="Tuto" id="Tuto" name="Tuto">Tutoriel</a></li>
         <li><a href="#Propos" class="Propos" id="Propos" name="Propos">A propos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
