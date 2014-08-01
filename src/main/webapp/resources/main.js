@@ -2,10 +2,10 @@ $(function() {
 	
 	
 	//dev
-	var redirection = "android";
+	//var redirection = "android";
 	
 	//prod
-	//var redirection = "BB10Android";
+	var redirection = "BB10Android";
     // Activate carousel
     $("#myCarousel").carousel();
     

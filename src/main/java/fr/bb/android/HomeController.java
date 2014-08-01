@@ -1,15 +1,10 @@
 package fr.bb.android;
 
-import java.io.IOException;
-import java.util.Locale;
 
-import javax.mail.MessagingException;
-import javax.mail.NoSuchProviderException;
+import java.util.Locale; 
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,20 +14,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.bb.android.mysql.MysqlConnec;
-import fr.bb.android.pojos.Applications;
-import fr.bb.android.pojos.Users;
-import fr.bb.android.util.Mail;
 import fr.bb.android.util.StringCorrection;
 
 @Controller
-public class HomeController {
-	
-	public static ApplicationContext context = new ClassPathXmlApplicationContext("classpath:application-config.xml");
-	public static HttpSession session;
-	public String ip = "";
-	
+public class HomeController extends SuperController {
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model,HttpServletRequest request) {
+		logger.info("Arrivé d'une nouvelle session sur le site");
 		session = request.getSession(true);
 
 		String ipAddress  = request.getHeader("X-FORWARDED-FOR");  	
@@ -49,357 +38,34 @@ public class HomeController {
  	   model.addAttribute("getTopBar", getTopBar());
 		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
  	   model.addAttribute("TotalApp", mysql.getTotalApp());
-	return "home";
-	}
-
-	@RequestMapping("Connexion.sd")
-	public ModelAndView Connexion(HttpServletRequest request)
-	{
-		session = request.getSession(true);	
-		ModelAndView model = new ModelAndView("Connexion");
-		model.addObject("getTopBar", getTopBar());
-		return model;
-	}
-	
-	@RequestMapping("Tuto.sd")
-	public ModelAndView Tuto(HttpServletRequest request)
-	{
-		session = request.getSession(true);	
-		ModelAndView model = new ModelAndView("Tutorial");
-		model.addObject("getTopBar", getTopBar());
-		return model;
-	}
-	
-	@RequestMapping("MdpLost.sd")
-	public ModelAndView MdpLost(HttpServletRequest request)
-	{
-		session = request.getSession(true);	
-		ModelAndView model = new ModelAndView("RecupMDP");
-		model.addObject("getTopBar", getTopBar());
-		return model;
-	}
-	
-	
-	@RequestMapping("GeneratePass.sd")
-	@ResponseBody
-	public String GetMdp(String email) throws MessagingException, IOException
-	{
-		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
-		if (mysql.checkEmail(email) > 0)
-		{
-			mysql.generatePWD(email);	
-			return "Un nouveau mot de passe vous a √©t√© envoy√© sur votre addresse : " + email;
-		}
-		else
-		{
-			return "Aucun compte sur BBLoveAndroid n'utilise l'addresse mail : " + email;
-		}
-
-	}
-	
-	@RequestMapping("Propos.sd")
-	public ModelAndView Propos(HttpServletRequest request)
-	{
-		session = request.getSession(true);	
-		ModelAndView model = new ModelAndView("Propos");
-		model.addObject("getTopBar", getTopBar());
-		return model;
-	}
-	
-	@RequestMapping("index.sd")
-	public ModelAndView index(HttpServletRequest request)
-	{
-		session = request.getSession(true);	
-		ModelAndView model = new ModelAndView("index");
-		model.addObject("getTopBar", getTopBar());
-		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
-	 	model.addObject("TotalApp", mysql.getTotalApp());
-		return model;
-	}
-	
-	@RequestMapping("NewLog.sd")
-	public ModelAndView NewLog(HttpServletRequest request)
-	{
-		session = request.getSession(true);	
-		ModelAndView model = new ModelAndView("CreateLogin");
-		model.addObject("getTopBar", getTopBar());
-		return model;
-	}
-	
-	@RequestMapping("Login.sd")
-	public ModelAndView Login(String log,String pass,HttpServletRequest request)
-	{
-		//retour
-		session = request.getSession(true);	
-		ModelAndView model = new ModelAndView("Logon");
-		String retour = "<div class=\"alert alert-warning\">Login ou mot de passe incorrect.</div>";
-		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
-		System.out.println(mysql.CheckLog(log, pass));
-		if (mysql.CheckLog(log, pass) == 2)
-		{
-
-			Users u = new Users();
-			u = mysql.getInformation(log, pass);
-			session.setAttribute("Login", u.getLogin());
-		 	session.setAttribute("Email", u.getEmail());
-		 	session.setAttribute("Sexe", u.getSexe());
-		 	session.setAttribute("id", u.getId());
-			retour = "<div class=\"alert alert-success\">Bienvenue " + u.getLogin() + " sur BB10LoveAndroid !</div>";
-		 	this.index(request);
-		}
-		model.addObject("getTopBar", getTopBar());
-		model.addObject("retour",retour);
-		return model;
-	}
-	
-	
-	@RequestMapping("AddApp.sd")
-	public ModelAndView AddApp(HttpServletRequest request)
-	{
-		session = request.getSession(true);	
-		ModelAndView model = new ModelAndView("AjoutAPP");
-		model.addObject("getTopBar",getTopBar());
-		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+ 	   if (session.getAttribute("Login") == "")
+ 	   {
+ 		   session.invalidate();
+ 	   }
+ 	   model.addAttribute("ListeApp", getApplication());
+ 	   
+ 	 // MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
 		SqlRowSet RowType = mysql.getAppType();
 		String Type = "";
 		while (RowType.next())
 		{
 			Type = Type + "<option id=" + RowType.getInt("id") + " value=" + RowType.getInt("id") + ">" + RowType.getString("Name") + "</option>";
 		}
-		model.addObject("Type",Type);
-		return model;	
+		model.addAttribute("Type",Type);
+	return "home";
 	}
-	
-//	var AppName = $("#Name").val();
-//	var Description = $("#Description").val();
-//	var Editeur = $("#Editeur").val();
-//	var Google = $("#Google").val();
-//	var Type = $("#Type").val();
-//	var Fonctionne = $("#Fonctionne").val();
-	@RequestMapping("NewApp.sd")
-	@ResponseBody
-	public String  NewwApp(HttpServletRequest request,String Name,String Description,String Editeur,String Google,int Type,int Fonctionne,int User)
-	{
-		session = request.getSession(true);	
-		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
-		boolean check = false;
-		check = mysql.verifExist(Name);
-		if (check == true)
-		{
-			return "X";
-		}
-		else
-		{
-			Applications app = new Applications();
-			app.setName(Name);
-			app.setDescription(Description);
-			app.setGooglePlay(Google);
-			app.setEditeur(Editeur);
-			app.setOk(Fonctionne);
-			app.setType(Type);
-			app.setUser(User);
-			//record database
-			mysql.addApp(app);
-			return "ok";
-		}
 
-	}
-	
-	@RequestMapping("AppList.sd")
-	public ModelAndView GetApp(HttpServletRequest request)
+	@RequestMapping("Connexion.sd")
+	public ModelAndView Connexion(HttpServletRequest request)
 	{
-		session = request.getSession(true);
-		ModelAndView model = new ModelAndView("AppList");
-		model.addObject("getTopBar",getTopBar());
-		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
-		StringCorrection correction = new StringCorrection();
-		SqlRowSet RowApp = mysql.getAllApplications();
-		String Liste = "";
-		while (RowApp.next())
-		{
-			String stat = "";
-			
-			if (RowApp.getInt("OK") == 1)
-			{
-				stat = "<font color=\"green\">Compatible</font>";
-				Liste = Liste + 
-						"<tr>"
-						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
-						+ "<td>" + RowApp.getString("Editeur") + "</td>"
-						+ "<td>" + RowApp.getString("Type") + "</td>"
-						+ "<td><b>" + stat + "</b></td>"
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + correction.Majuscule(RowApp.getString("login")) + "</a></td>" 
-						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn btn-primary btn-zoomApp\">Plus</a></td></tr>";
-			}
-			else
-			{
-				stat = "<font color=\"red\">Incompatible</font>";
-				Liste = Liste + 
-						"<tr>"
-						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
-						+ "<td>" + RowApp.getString("Editeur") + "</td>"
-						+ "<td>" + RowApp.getString("Type") + "</td>"
-						+ "<td><b>" + stat + "</b></td>"
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + correction.Majuscule(RowApp.getString("login")) + "</a></td>" 
-						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn btn-primary btn-zoomApp\">Plus</a></td></tr>";
-			}
-	}
-		model.addObject("ListeApp",Liste);
+		logger.info("Debut de connexion d'un utilisateur");
+		session = request.getSession(true);	
+		ModelAndView model = new ModelAndView("Connexion");
+		model.addObject("getTopBar", getTopBar());
 		return model;
 	}
-	
-	
-	@RequestMapping("Seek.sd")
-	public ModelAndView Seek(HttpServletRequest request,String AppName)
-	{
-		session = request.getSession(true);
-		ModelAndView model = new ModelAndView("AppList");
-		model.addObject("getTopBar",getTopBar());
-		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
-		StringCorrection correction = new StringCorrection();
-		SqlRowSet RowApp = mysql.getSeekApp(AppName);
-		String Liste = "";
-		int verification = 0;
-		while (RowApp.next())
-		{
-			verification = 1;
-			String stat = "";
-			
-			if (RowApp.getInt("OK") == 1)
-			{
-				stat = "<font color=\"green\">Compatible</font>";
-				Liste = Liste + 
-						"<tr class=\"success\">"
-						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
-						+ "<td>" + RowApp.getString("Editeur") + "</td>"
-						+ "<td>" + RowApp.getString("Type") + "</td>"
-						+ "<td><b>" + stat + "</b></td>"
-						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + correction.Majuscule(RowApp.getString("login")) + "</a></td>" 
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\"><img src=\"resources/img/Info.png\"></a></td></tr>";
-			}
-			else
-			{
-				stat = "<font color=\"red\">Incompatible</font>";
-				Liste = Liste + 
-						"<tr class=\"warning\">"
-						+ "<td><b>" + RowApp.getString("Name") + "</b></td>"
-						+ "<td>" + RowApp.getString("Editeur") + "</td>"
-						+ "<td>" + RowApp.getString("Type") + "</td>"
-						+ "<td><b>" + stat + "</b></td>"
-						+ "<td><a href=\"" + RowApp.getString("GooglePlay") + "\" target=\"_blank\"><img src=\"resources/img/GooglePlay.png\"></a></td>"
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("UserId") + "\"><a href=\"#myModal2\" data-toggle=\"modal\" class=\"usr-zommApp\" >" + correction.Majuscule(RowApp.getString("login")) + "</a></td>" 
-						+ "<td><input type=\"Hidden\" id=idApp name=idApp value=\""+ RowApp.getInt("id") + "\"><a href=\"#myModal\" data-toggle=\"modal\" class=\"btn-zoomApp\"><img src=\"resources/img/Info.png\"></a></td></tr>";
-			}
-		}
-		if (verification == 0)
-		{
-			Liste = "<tr class=\"danger\">"
-					+ "<td><b>Aucun r√©sultat pour :  " + AppName + "</b></td>"
-					+ "<td></td>"
-					+ "<td></td>"
-					+ "<td></td>"
-					+ "<td></a></td>"
-					+ "<td></td>" 
-					+ "<td></td></tr>";
 
-		}
-			model.addObject("ListeApp",Liste);
-			return model;
-	}
-	
-	@RequestMapping("ZoomApp.sd")
-	@ResponseBody
-	public String zoomapp(int idApp)
-	{
-		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
-		Applications app = mysql.getApplication(idApp);
-		String retour = "";
-		String titre = "";
-		retour = "<b>Titre : </b>" + app.getName() + "<br />"
-				+ "<b>Description : </b>" + app.getDescription() + "<br />"
-						+ "<b>Lien GooglePlay : </b><a href=" + app.getGooglePlay() + ">ici</a><br />"
-								+ "<b>Editeur : </b>" + app.getEditeur();
-		titre = app.getName();
-		return titre + "/////"+ retour;
-	}
-	
-	@RequestMapping("zoomUsr.sd")
-	@ResponseBody
-	public String zoomUsr(int idUser)
-	{
-		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
-		int TotalApp = mysql.getAppUser(idUser);
-		StringCorrection correction = new StringCorrection();
-		SqlRowSet User = mysql.getUserInformation(idUser);
-		String retour = "";
-		String sexe = "";
-		String grade = "Baby BB Lover <img src=\"resources/img/Stars.png\">";
-		if (TotalApp >= 10 && TotalApp < 20)
-		{grade = "Bon BB Lover <img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\">";}
-		else if (TotalApp >= 20 && TotalApp < 30)
-		{grade = "BB Lover <img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\">";}
-		else if (TotalApp >= 30 && TotalApp < 40)
-		{grade = "Super BB Lover <img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\">";}
-		else if (TotalApp > 40)
-		{grade = "Maitre BB Lover <img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\"><img src=\"resources/img/Stars.png\">";}
-		while (User.next())
-		{
-			if (User.getInt("sexe") == 1)
-			{
-				sexe = "Homme";
-			}
-			else
-			{
-				sexe = "Femme";
-			}
-			retour = correction.Majuscule(User.getString("login")) + "/////" + sexe + "/////" + TotalApp + "/////" + grade;
-			
-			
-		}
-		return retour;
-	}
-	
-	
-	@RequestMapping("CreateLog.sd")
-	@ResponseBody	
-	public String createLog(String login,String password,String sexe,String email,HttpServletRequest request) throws NoSuchProviderException, MessagingException, IOException
-	{
-		session = request.getSession(true);	
-		int monsexe = Integer.parseInt(sexe);
-		Users u = new Users(0,login, password, email, 0, monsexe, 0);
-		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
-		int retour = mysql.CreateLogin(u);
-		System.out.println(retour);
-		if (retour != 0)
-		{
-			Mail mail = new Mail();
-			mail.connect("auth.smtp.1and1.fr", "contacts@bbloveandroid.com", "Kikoo2031");
-			
-			mail.send("contacts@bbloveandroid.com", email, "Validez votre compte BBLoveAndroid !", "<html><head>"
-					+ "<link rel=\"stylesheet\" href=\"http://37.187.47.201:8080/BB10Android/resources/bootstrap-3.1.1/css/bootstrap.min.css\" type=\"text/css\" />"
-					+ "<link rel=\"stylesheet\" href=\"http://37.187.47.201:8080/BB10Android/resources/bootstrap-3.1.1/css/bootstrap-theme.min.css\" type=\"text/css\" />"
-					+ "<style type=\"text/css\">a:link{text-decoration:none}</style>"
-					+ "</head>"
-					+ "<body style=background-color:#295e92;color:white;a:link{text-decoration:none}>"
-					+ "<center><img src=\"http://37.187.47.201:8090/BB10Android/resources/img/MyBBLOVE.png\"></center><br />"
-					+ "Bonjour " + login + ", vous venez de cr&eacute;er un compte sur BBLoveAndroid.<br />"
-					+ "Afin de valider votre compter merci de cliquez sur le lien ci-dessous.<br />"
-					+ "<center><a href=http://37.187.47.201:8090/BB10Android/ValidCompte.sd?id="+ retour+"&user=" +login + " style=a:link{text-decoration:none}>"
-					+ "Valider mon compte</a></center><br/><br />"
-					+ "Ceci est un mail automatique merci de ne pas y r&eacutepondre.</div>", "");
-			return "X";
-			
-		}
-		else
-		{
-			return "0";
-		}
-	}
-	
-	public  String getClientIpAddr(HttpServletRequest request) {  
+	public String getClientIpAddr(HttpServletRequest request) {  
 		session = request.getSession(true);	
         String ip = request.getHeader("X-Forwarded-For");  
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
@@ -437,12 +103,13 @@ public class HomeController {
 	@ResponseBody
 	public String ValidEmail(int id,String user)
 	{
+		logger.info("Validation d'un compte pour le site");
 		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
 		
 		boolean retour = mysql.validMail(id,user);
 		if (retour == true)
 		{
-			return "<center><b>Merci d'avoir crÔøΩer votre compte sur BBLoveAndroid, vous pouvez dÔøΩs ÔøΩ prÔøΩsent vous connecter au site</b><br />"
+			return "<center><b>Merci d'avoir créer votre compte sur BBLoveAndroid, vous pouvez dés à présent vous connecter au site</b><br />"
 					+ "www.BBLoveAndroid.com";
 		}
 		else
@@ -454,6 +121,7 @@ public class HomeController {
 	@RequestMapping("Lougout.sd")
 	public ModelAndView logout(HttpServletRequest request)
 	{
+		logger.debug("Deconexion d'une session");
 		session = request.getSession(true);	
 		session.removeAttribute("Login");
 		session.setAttribute("Login", "Invite");
@@ -462,34 +130,74 @@ public class HomeController {
 		return model;
 	}
 	
-	public String getTopBar()
+	@RequestMapping("RefreshApp.sd")
+	@ResponseBody
+	public String RefreshApp()
 	{
-		String retour = "";
-		if(session.getAttribute("Login").toString().contentEquals("") == true)
-		{
-			retour = "<a href=\"#PageLog\" class=\"PageLog btn btn-primary\">Connexion</a>";
-		   session.setAttribute("Login", "Invite");
-	 	   session.setAttribute("Email", "Invite");
-	 	   session.setAttribute("Sexe", "");
-	 	   session.setAttribute("ip", ip);
-	 	   session.setAttribute("id", 0);
-	 	   return retour;
-		}
-		if (session.getAttribute("Login").toString().contentEquals("Invite") == true)
-		{
-			retour = "<a href=\"#PageLog\" class=\"PageLog btn btn-primary\">Connexion</a>";
-		}
-		else if(session.getAttribute("Login").toString().contentEquals("") == true)
-		{
-			retour = "<a href=\"#PageLog\" class=\"PageLog btn btn-primary\">Connexion</a>";		
-		}
-		else
-		{
-			retour = "<div id=\"MonId\" name=\"MonId\" style=\"display:none\">" + session.getAttribute("id") + "</div>"
-					+ "<input type=\"hidden\" name=MonId value=" + session.getAttribute("id") + ">"
-					+ "<a href=\"#Logout\" id=\"Logout\" class=\"Logout\"><img src=\"resources/img/Account.png\" ></a>  "
-					+ "<a href=\"#AddApp\" id=\"AddApp\" class=\"AddApp btn btn-success\">Ajouter application</a>";		
-		}
-		return retour;
+		return getApplication();
 	}
+	
+	public String getApplication()
+	{
+		logger.info("Recupération de la liste des applications");
+		ModelAndView model = new ModelAndView("AppList");
+		model.addObject("getTopBar",getTopBar());
+		MysqlConnec mysql = context.getBean("MysqlConnec",MysqlConnec.class);
+		StringCorrection correction = new StringCorrection();
+		SqlRowSet RowApp = mysql.getAllApplications();
+		String Liste = "";
+		int i = 0;
+		while (RowApp.next())
+		{
+
+			String image = RowApp.getString("Image");
+			if (image.contentEquals("") == true)
+			{
+				image = "<img src=\"http://37.187.47.201/img/Default.png\" height=\"100px\" width=\"100px\">";
+			}
+			else
+			{
+				image = "<img src=\"http://37.187.47.201/img/" + image + "\" height=\"100px\" width=\"100px\">";
+			}
+			if (RowApp.getInt("OK") == 1)
+			{
+				Liste = Liste +   "<div class=\"panel panel-success\">"
+				+ "<div class=\"panel-heading\">"
+				+ "<h4 class=\"panel-title\">"
+				+ "<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse" + i + "\">"
+				+ correction.Majuscule(RowApp.getString("Name")) + "<span class=\"glyphicon glyphicon-plus-sign\" style=\"float:right\"></span>"
+			      + "  </a>"
+			     + " </h4>"
+			    + "</div>"
+			    + "<div id=\"collapse" + i + "\" class=\"panel-collapse collapse\">"
+			    + "<div class=\"panel-body\" style=\"color:black;\">"
+			    + image + " Posté par : " +  RowApp.getString("login") + "<br /> Description : " + RowApp.getString("Description")
+			    + " </div>"
+			   + " </div>"
+			 + " </div>";
+			}
+			else
+			{
+				Liste = Liste +   "<div class=\"panel panel-danger\">"
+				+ "<div class=\"panel-heading\">"
+				+ "<h4 class=\"panel-title\">"
+				+ "<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse" + i + "\">"
+				+ RowApp.getString("Name") + "<span class=\"glyphicon glyphicon-plus-sign\" style=\"float:right\"></span>"
+			      + "  </a>"
+			     + " </h4>"
+			    + "</div>"
+			    + "<div id=\"collapse" + i + "\" class=\"panel-collapse collapse\">"
+			    + "<div class=\"panel-body\" style=\"color:black;\">"
+			    + image + " Posté par : " +  correction.Majuscule(RowApp.getString("login")) + "<br /> Description : " + RowApp.getString("Description")
+			    + " </div>"
+			   + " </div>"
+			 + " </div>";
+			
+			}
+			i = i + 1;
+	}
+		return Liste;
+		
+	}
+		
 }

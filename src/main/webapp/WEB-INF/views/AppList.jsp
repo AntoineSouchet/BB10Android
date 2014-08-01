@@ -31,21 +31,29 @@ ${getTopBar}
 </nav> 
 
 <div id="Record" name="Record" class="jumbotron" style="width:100%;margin-bottom:0px;">
-<table class="order-table table table-striped table-hover">
-<thead bgcolor="#295e92" font-color="#fff">
-<tr><th><font color="#fff">Nom</font></th>
-<th><font color="#fff">Editeur</font></th>
-<th><font color="#fff">Type</font></th>
-<th><font color="#fff">Statut</font></th>
-<th><font color="#fff">Utilisateur</font></th>
-<th><font color="#fff">GooglePlay</font></th>
-<th><font color="#fff">Informations</font></th>
-</thead>
-<tbody>
+<!-- <table class="order-table table table-striped table-hover"> -->
+<!-- <thead bgcolor="#295e92" font-color="#fff"> -->
+<!-- <tr><th><font color="#fff">Nom</font></th> -->
+<!-- <th><font color="#fff">Image</font></th> -->
+<!-- <th><font color="#fff">Editeur</font></th> -->
+<!-- <th><font color="#fff">Type</font></th> -->
+<!-- <th><font color="#fff">Statut</font></th> -->
+<!-- <th><font color="#fff">Utilisateur</font></th> -->
+<!-- <th><font color="#fff">GooglePlay</font></th> -->
+<!-- <th><font color="#fff">Informations</font></th> -->
+<!-- </thead> -->
+<!-- <tbody> -->
+<%-- ${ListeApp} --%>
+<!-- </tbody> -->
+<!-- </table> -->
+<div class="row">
 ${ListeApp}
-</tbody>
-</table>
 </div>
+
+
+
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

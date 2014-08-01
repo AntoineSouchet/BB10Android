@@ -7,6 +7,7 @@ public class Applications {
 	private String Description;
 	private String Editeur;
 	private String GooglePlay;
+	private String Image;
 	private int Type;
 	private int User;
 	private int Ok;
@@ -58,6 +59,12 @@ public class Applications {
 	}
 	public void setOk(int ok) {
 		Ok = ok;
+	}
+	public String getImage() {
+		return Image;
+	}
+	public void setImage(String image) {
+		Image = image;
 	}
 
 }

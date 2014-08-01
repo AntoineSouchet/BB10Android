@@ -33,9 +33,9 @@ public class MysqlConnec {
 
 	public void addApp(Applications app)
 	{		
-		String sql = "insert into Applications (Name,Description,Editeur,GooglePlay,Type,User,Ok) values (?,?,?,?,?,?,?);";
+		String sql = "insert into Applications (Name,Description,Editeur,GooglePlay,Type,User,Ok,Image) values (?,?,?,?,?,?,?,?);";
 		if (CheckInjection(sql) == false) {
-		this.montemplate.update(sql,app.getName(),app.getDescription(),app.getEditeur(),app.getGooglePlay(),app.getType(),app.getUser(),app.getOk()); }
+		this.montemplate.update(sql,app.getName(),app.getDescription(),app.getEditeur(),app.getGooglePlay(),app.getType(),app.getUser(),app.getOk(),app.getImage()); }
 	}
 	
 	public Applications getApp(int id)
@@ -161,6 +161,7 @@ public class MysqlConnec {
 			app.setType(R.getInt("Type"));
 			app.setUser(R.getInt("User"));
 			app.setOk(R.getInt("Ok"));
+			app.setImage(R.getString("Image"));
 		}
 		return app;
 	}
@@ -192,14 +193,14 @@ public class MysqlConnec {
 	
 	public SqlRowSet getAllApplications()
 	{
-		String sql = "Select app.id,app.Name,Description,Editeur,GooglePlay,T.Name as 'Type',U.login,OK,U.id as 'UserId' from Applications as app "
+		String sql = "Select app.id,app.Name,Description,Image,Editeur,GooglePlay,T.Name as 'Type',U.login,OK,U.id as 'UserId' from Applications as app "
 					+ " inner join Type as T on app.Type = T.id "
 					+ " inner join Users as U on app.User = U.id order by app.id desc";
 		return this.montemplate.queryForRowSet(sql);
 	}
 	
 	public SqlRowSet getSeekApp(String appname)
-	{		String sql = "Select app.id,app.Name,Description,Editeur,GooglePlay,T.Name as 'Type',U.login,OK,U.id as 'UserId' from Applications as app "
+	{		String sql = "Select app.id,app.Name,Description,Image,Editeur,GooglePlay,T.Name as 'Type',U.login,OK,U.id as 'UserId' from Applications as app "
 			+ " inner join Type as T on app.Type = T.id "
 			+ " inner join Users as U on app.User = U.id where app.Name like '%" + appname + "%'";
 			return this.montemplate.queryForRowSet(sql);

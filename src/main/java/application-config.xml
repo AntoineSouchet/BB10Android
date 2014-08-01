@@ -18,7 +18,12 @@
 </bean>
 
 <!-- Prod parameters -->
-
+<!-- <bean id="dataSourceMYSQL" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> -->
+<!-- 	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property> -->
+<!-- 	<property name="url" value="jdbc:mysql://127.0.0.1/BBLoveAndroid"></property> -->
+<!-- 	<property name="username" value="root"></property> -->
+<!-- 	<property name="password" value="BBlov34ndroid"></property> -->
+<!-- </bean> -->
 <bean id="MysqlConnec" class="fr.bb.android.mysql.MysqlConnec">
 <constructor-arg ref="dataSourceMYSQL"></constructor-arg>
 </bean>
